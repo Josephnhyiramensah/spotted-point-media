@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Spotted Point Media Limited | Grow with Evidence. Succeed with Clarity.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --blue: #2B3A9F;
+  --blue-dark: #1e2a75;
+  --blue-light: #3d4fbe;
+  --orange: #F5A623;
+  --orange-dark: #d4891a;
+  --black: #1A1A1A;
+  --gray: #6b7280;
+  --light-bg: #f5f6fa;
+  --white: #ffffff;
+  --border: #e2e8f0;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Outfit',sans-serif; color:var(--black); background:var(--white); overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  background:var(--blue-dark);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 5%; height:72px;
+  box-shadow:0 2px 24px rgba(0,0,0,0.25);
+}
+.logo-wrap { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.logo-text { display:flex; flex-direction:column; line-height:1; }
+.logo-text .spotted { font-family:'Outfit',sans-serif; font-weight:700; font-size:1rem; color:var(--white); letter-spacing:1px; }
+.logo-text .spotted span { color:var(--orange); }
+.logo-text .media { font-family:'Outfit',sans-serif; font-weight:400; font-size:0.6rem; letter-spacing:3px; color:rgba(255,255,255,0.5); margin-top:3px; }
+.nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
+.nav-links a { color:rgba(255,255,255,0.85); text-decoration:none; font-size:0.88rem; font-weight:500; transition:color 0.3s; }
+.nav-links a:hover { color:var(--orange); }
+.nav-cta { background:var(--orange); color:var(--black) !important; padding:9px 22px; border-radius:4px; font-weight:700 !important; }
+.nav-cta:hover { background:var(--orange-dark) !important; }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+.hamburger span { width:24px; height:2px; background:white; display:block; }
+
+/* HERO */
+.hero { min-height:100vh; background:var(--blue-dark); display:flex; align-items:center; position:relative; overflow:hidden; padding-top:72px; }
+.hero-bg-dots { position:absolute; top:0; left:0; right:0; bottom:0; opacity:0.05; background-image:radial-gradient(circle, #fff 1.5px, transparent 1.5px); background-size:30px 30px; }
+.hero-glow { position:absolute; top:-100px; right:-100px; width:600px; height:600px; background:radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%); border-radius:50%; }
+.hero-inner { position:relative; z-index:2; width:100%; max-width:1200px; margin:0 auto; padding:80px 5%; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+.hero-badge { display:inline-block; background:rgba(245,166,35,0.15); border:1px solid rgba(245,166,35,0.35); color:var(--orange); padding:6px 14px; border-radius:20px; font-size:0.72rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:20px; white-space:nowrap; max-width:100%; overflow:hidden; text-overflow:ellipsis; }
+.hero-title { font-family:'Playfair Display',serif; font-size:clamp(1.9rem,5vw,3.6rem); color:var(--white); line-height:1.15; font-weight:900; margin-bottom:20px; word-break:break-word; }
+.hero-title span { color:var(--orange); }
+.hero-sub { font-size:1rem; color:rgba(255,255,255,0.7); line-height:1.75; margin-bottom:36px; max-width:500px; word-break:break-word; }
+.hero-btns { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:50px; }
+.btn-primary { background:var(--orange); color:var(--black); padding:14px 32px; border-radius:5px; font-weight:700; text-decoration:none; font-size:0.95rem; transition:all 0.3s; display:inline-block; }
+.btn-primary:hover { background:var(--orange-dark); transform:translateY(-2px); }
+.btn-outline { background:transparent; color:var(--white); padding:14px 32px; border-radius:5px; font-weight:600; text-decoration:none; font-size:0.95rem; border:2px solid rgba(255,255,255,0.3); transition:all 0.3s; display:inline-block; }
+.btn-outline:hover { border-color:var(--orange); color:var(--orange); transform:translateY(-2px); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.stat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:20px; text-align:center; }
+.stat-num { font-family:'Playfair Display',serif; font-size:2rem; color:var(--orange); font-weight:700; }
+.stat-label { font-size:0.76rem; color:rgba(255,255,255,0.55); margin-top:4px; }
+.hero-visual { display:flex; align-items:center; justify-content:center; }
+.hero-logo-big { animation:float 4s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-18px);} }
+
+/* TICKER */
+.ticker { background:var(--orange); padding:14px 0; overflow:hidden; }
+.ticker-track { display:flex; gap:60px; animation:tick 30s linear infinite; white-space:nowrap; }
+.ticker-track span { font-weight:700; font-size:0.85rem; color:var(--black); flex-shrink:0; }
+.ticker-track span::before { content:"● "; }
+@keyframes tick { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* SECTIONS */
+section { padding:90px 5%; }
+.section-inner { max-width:1200px; margin:0 auto; }
+.section-tag { display:inline-block; color:var(--orange); font-weight:700; font-size:0.78rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.6rem); color:var(--blue-dark); font-weight:900; line-height:1.2; margin-bottom:16px; }
+.section-title span { color:var(--orange); }
+.section-sub { color:var(--gray); font-size:1rem; line-height:1.75; max-width:680px; margin-bottom:50px; }
+.divider { width:60px; height:4px; background:var(--orange); border-radius:2px; margin:16px 0 24px; }
+
+/* ABOUT */
+.about-bg { background:var(--light-bg); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
+.about-card { background:var(--blue-dark); border-radius:16px; padding:50px 40px; text-align:center; position:relative; overflow:hidden; }
+.about-quote { font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--white); line-height:1.4; font-weight:700; margin:20px 0 12px; }
+.about-quote span { color:var(--orange); }
+.about-slogan { color:rgba(255,255,255,0.55); font-size:0.88rem; letter-spacing:1px; }
+.about-values { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:30px; }
+.value-item { display:flex; align-items:flex-start; gap:12px; background:var(--white); border-radius:10px; padding:16px; border:1px solid var(--border); transition:box-shadow 0.3s; }
+.value-item:hover { box-shadow:0 4px 20px rgba(43,58,159,0.1); }
+.value-icon { width:36px; height:36px; background:rgba(245,166,35,0.12); border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.1rem; }
+.value-name { font-weight:700; font-size:0.85rem; color:var(--blue-dark); margin-bottom:2px; }
+.value-desc { font-size:0.76rem; color:var(--gray); line-height:1.4; }
+
+/* SERVICES */
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+.service-card { background:var(--white); border-radius:12px; padding:32px 26px; border:1px solid var(--border); transition:all 0.35s; position:relative; overflow:hidden; }
+.service-card::after { content:""; position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--blue),var(--orange)); transform:scaleX(0); transition:transform 0.35s; }
+.service-card:hover { transform:translateY(-8px); box-shadow:0 20px 50px rgba(43,58,159,0.12); }
+.service-card:hover::after { transform:scaleX(1); }
+.service-icon { width:52px; height:52px; background:linear-gradient(135deg,var(--blue),var(--blue-light)); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:18px; }
+.service-num { position:absolute; top:18px; right:20px; font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:rgba(43,58,159,0.06); }
+.service-title { font-weight:700; font-size:1rem; color:var(--blue-dark); margin-bottom:10px; }
+.service-desc { font-size:0.86rem; color:var(--gray); line-height:1.65; margin-bottom:14px; }
+.service-tag { font-size:0.74rem; color:var(--orange); font-weight:600; }
+
+/* PRICING */
+.pricing-bg { background:var(--blue-dark); }
+.pricing-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+.pricing-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); border-radius:16px; padding:44px 40px; position:relative; overflow:hidden; transition:all 0.35s; }
+.pricing-card.featured { background:var(--orange); border-color:var(--orange); }
+.pricing-card:hover { transform:translateY(-6px); }
+.pricing-badge { position:absolute; top:20px; right:20px; background:var(--blue-dark); color:var(--white); font-size:0.7rem; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:1px; }
+.pricing-icon { font-size:2.5rem; margin-bottom:18px; }
+.pricing-name { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:900; color:var(--white); margin-bottom:12px; }
+.pricing-card.featured .pricing-name { color:var(--black); }
+.pricing-desc { font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.65; margin-bottom:26px; }
+.pricing-card.featured .pricing-desc { color:rgba(0,0,0,0.7); }
+.pricing-features { list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:30px; }
+.pricing-features li { display:flex; align-items:center; gap:10px; font-size:0.88rem; color:rgba(255,255,255,0.8); }
+.pricing-card.featured .pricing-features li { color:var(--black); }
+.pricing-features li::before { content:"✓"; color:var(--orange); font-weight:700; flex-shrink:0; }
+.pricing-card.featured .pricing-features li::before { color:var(--blue-dark); }
+.pricing-btn { display:block; text-align:center; padding:14px; border-radius:6px; font-weight:700; text-decoration:none; transition:all 0.3s; border:2px solid var(--orange); color:var(--orange); font-size:0.92rem; }
+.pricing-btn:hover { background:var(--orange); color:var(--black); }
+.pricing-card.featured .pricing-btn { background:var(--blue-dark); color:var(--white); border-color:var(--blue-dark); }
+.pricing-card.featured .pricing-btn:hover { background:var(--blue); }
+
+/* WHY US */
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
+.why-list { display:flex; flex-direction:column; gap:26px; }
+.why-item { display:flex; gap:20px; align-items:flex-start; }
+.why-num { width:46px; height:46px; background:linear-gradient(135deg,var(--blue),var(--blue-light)); border-radius:12px; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:900; font-size:1rem; color:var(--white); flex-shrink:0; }
+.why-title { font-weight:700; color:var(--blue-dark); margin-bottom:5px; }
+.why-text { font-size:0.88rem; color:var(--gray); line-height:1.65; }
+.why-visual { background:var(--blue-dark); border-radius:20px; padding:48px 40px; position:relative; overflow:hidden; }
+.why-visual::before { content:""; position:absolute; top:0; right:0; width:200px; height:200px; background:radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%); }
+.mission-block { margin-bottom:28px; }
+.mission-label { font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--orange); font-weight:700; margin-bottom:8px; }
+.mission-text { font-size:0.92rem; color:rgba(255,255,255,0.7); line-height:1.7; }
+.vision-text { font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--white); line-height:1.5; font-style:italic; border-left:3px solid var(--orange); padding-left:20px; margin-top:24px; }
+
+/* TESTIMONIALS */
+.testimonials-bg { background:var(--light-bg); }
+.testimonials-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+.testi-card { background:var(--white); border-radius:14px; padding:30px 26px; border:1px solid var(--border); transition:all 0.3s; }
+.testi-card:hover { box-shadow:0 12px 40px rgba(43,58,159,0.1); transform:translateY(-4px); }
+.stars { color:var(--orange); font-size:0.85rem; margin-bottom:10px; }
+.testi-quote { font-size:2.2rem; color:var(--orange); line-height:1; margin-bottom:14px; font-family:'Playfair Display',serif; }
+.testi-text { font-size:0.88rem; color:var(--gray); line-height:1.7; margin-bottom:22px; font-style:italic; }
+.testi-author { display:flex; align-items:center; gap:12px; }
+.testi-avatar { width:42px; height:42px; background:linear-gradient(135deg,var(--blue),var(--orange)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; color:white; font-size:0.9rem; flex-shrink:0; }
+.testi-name { font-weight:700; color:var(--blue-dark); font-size:0.88rem; }
+.testi-role { font-size:0.76rem; color:var(--gray); }
+
+/* CONTACT */
+.contact-bg { background:var(--blue-dark); }
+.contact-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:70px; align-items:start; }
+.contact-detail { display:flex; align-items:flex-start; gap:16px; margin-bottom:22px; }
+.contact-detail-icon { width:42px; height:42px; background:rgba(245,166,35,0.15); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.contact-detail-label { font-size:0.75rem; color:rgba(255,255,255,0.5); margin-bottom:3px; text-transform:uppercase; letter-spacing:1px; }
+.contact-detail-value { font-size:0.92rem; color:var(--white); font-weight:500; }
+.contact-form { background:var(--white); border-radius:16px; padding:44px 38px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.form-group { margin-bottom:18px; }
+.form-group label { display:block; font-weight:600; font-size:0.83rem; color:var(--blue-dark); margin-bottom:7px; }
+.form-group input, .form-group select, .form-group textarea { width:100%; padding:11px 15px; border:2px solid var(--border); border-radius:8px; font-family:'Outfit',sans-serif; font-size:0.88rem; color:var(--black); transition:border-color 0.3s; outline:none; background:var(--light-bg); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--blue); background:var(--white); }
+.form-group textarea { resize:vertical; min-height:110px; }
+.form-submit { width:100%; background:var(--blue-dark); color:var(--white); padding:15px; border:none; border-radius:8px; font-family:'Outfit',sans-serif; font-size:0.95rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
+.form-submit:hover { background:var(--blue); transform:translateY(-2px); }
+
+/* FOOTER */
+footer { background:#0e1535; padding:60px 5% 28px; }
+.footer-inner { max-width:1200px; margin:0 auto; }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:50px; margin-bottom:50px; }
+.footer-tagline { font-size:0.86rem; color:rgba(255,255,255,0.45); line-height:1.6; max-width:280px; margin:14px 0 18px; }
+.social-links { display:flex; gap:10px; }
+.social-link { width:34px; height:34px; background:rgba(255,255,255,0.08); border-radius:7px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.78rem; font-weight:700; transition:all 0.3s; }
+.social-link:hover { background:var(--orange); color:var(--black); }
+.footer-col h4 { color:var(--white); font-weight:700; font-size:0.88rem; margin-bottom:16px; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-col ul li a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.83rem; transition:color 0.3s; }
+.footer-col ul li a:hover { color:var(--orange); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.footer-copy { font-size:0.8rem; color:rgba(255,255,255,0.38); }
+.footer-copy span { color:var(--orange); }
+.scroll-top { position:fixed; bottom:28px; right:28px; z-index:999; width:42px; height:42px; background:var(--orange); border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 20px rgba(245,166,35,0.4); transition:all 0.3s; text-decoration:none; color:var(--black); font-weight:700; font-size:1rem; }
+.scroll-top:hover { background:var(--orange-dark); transform:translateY(-3px); }
+
+/* GALLERY */
+.gallery-bg { background: var(--black); position: relative; overflow: hidden; }
+.gallery-bg::before { content:""; position:absolute; top:0; left:0; right:0; bottom:0; opacity:0.04; background-image:radial-gradient(circle, #fff 1.5px, transparent 1.5px); background-size:28px 28px; pointer-events:none; }
+
+.gallery-header { text-align:center; margin-bottom:60px; }
+.gallery-header .section-title { color:var(--white); }
+.gallery-header .section-sub { color:rgba(255,255,255,0.55); margin:0 auto; }
+
+/* Auto Slider */
+.slider-wrapper { position:relative; overflow:hidden; border-radius:16px; margin-bottom:50px; }
+.slider-track { display:flex; transition:transform 0.8s cubic-bezier(0.77,0,0.175,1); will-change:transform; }
+.slide { min-width:100%; position:relative; height:520px; overflow:hidden; flex-shrink:0; }
+.slide img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 6s ease; }
+.slide.active img { transform:scale(1.06); }
+.slide-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(10,16,40,0.85) 0%, rgba(10,16,40,0.1) 60%, transparent 100%); }
+.slide-caption { position:absolute; bottom:40px; left:50px; right:50px; color:var(--white); }
+.slide-caption h3 { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900; margin-bottom:8px; transform:translateY(20px); opacity:0; transition:all 0.6s 0.3s; }
+.slide-caption p { font-size:0.92rem; color:rgba(255,255,255,0.7); transform:translateY(20px); opacity:0; transition:all 0.6s 0.45s; }
+.slide.active .slide-caption h3,
+.slide.active .slide-caption p { transform:translateY(0); opacity:1; }
+.slide-cat { display:inline-block; background:var(--orange); color:var(--black); font-size:0.72rem; font-weight:700; padding:4px 12px; border-radius:20px; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px; transform:translateY(20px); opacity:0; transition:all 0.6s 0.15s; }
+.slide.active .slide-cat { transform:translateY(0); opacity:1; }
+
+/* Slider controls */
+.slider-controls { position:absolute; bottom:40px; right:50px; display:flex; gap:10px; z-index:10; }
+.slider-btn { width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,0.15); border:2px solid rgba(255,255,255,0.3); color:white; font-size:1.1rem; cursor:pointer; transition:all 0.3s; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(6px); }
+.slider-btn:hover { background:var(--orange); border-color:var(--orange); color:var(--black); }
+.slider-dots { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:10; }
+.slider-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.35); border:none; cursor:pointer; transition:all 0.3s; padding:0; }
+.slider-dot.active { background:var(--orange); width:24px; border-radius:4px; }
+
+/* Thumbnail strip */
+.thumb-strip { display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; margin-bottom:50px; scrollbar-width:thin; scrollbar-color:var(--orange) rgba(255,255,255,0.1); }
+.thumb-strip::-webkit-scrollbar { height:4px; }
+.thumb-strip::-webkit-scrollbar-track { background:rgba(255,255,255,0.08); border-radius:2px; }
+.thumb-strip::-webkit-scrollbar-thumb { background:var(--orange); border-radius:2px; }
+.thumb { width:100px; height:68px; border-radius:8px; overflow:hidden; flex-shrink:0; cursor:pointer; border:2px solid transparent; transition:all 0.3s; opacity:0.5; }
+.thumb.active { border-color:var(--orange); opacity:1; transform:translateY(-3px); }
+.thumb:hover { opacity:0.85; }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Grid gallery */
+.gallery-grid-title { text-align:center; margin-bottom:30px; }
+.gallery-grid-title h3 { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--white); font-weight:700; }
+.gallery-grid-title p { color:rgba(255,255,255,0.45); font-size:0.85rem; margin-top:6px; }
+.gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:50px; }
+.gallery-item { border-radius:10px; overflow:hidden; position:relative; aspect-ratio:4/3; cursor:pointer; }
+.gallery-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s; }
+.gallery-item:hover img { transform:scale(1.08); }
+.gallery-item-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(30,42,117,0.85) 0%, transparent 60%); opacity:0; transition:opacity 0.3s; display:flex; align-items:flex-end; padding:14px; }
+.gallery-item:hover .gallery-item-overlay { opacity:1; }
+.gallery-item-label { font-size:0.8rem; font-weight:600; color:var(--white); }
+.gallery-item.span2 { grid-column:span 2; }
+
+/* Upload section */
+.gallery-upload { background:rgba(255,255,255,0.04); border:2px dashed rgba(255,255,255,0.15); border-radius:14px; padding:40px; text-align:center; transition:all 0.3s; }
+.gallery-upload:hover { border-color:var(--orange); background:rgba(245,166,35,0.05); }
+.upload-icon { font-size:3rem; margin-bottom:16px; }
+.upload-title { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--white); font-weight:700; margin-bottom:8px; }
+.upload-sub { color:rgba(255,255,255,0.45); font-size:0.88rem; margin-bottom:24px; }
+.upload-btn-wrap { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.upload-btn { background:var(--orange); color:var(--black); padding:12px 28px; border-radius:6px; font-weight:700; cursor:pointer; border:none; font-family:'Outfit',sans-serif; font-size:0.9rem; transition:all 0.3s; }
+.upload-btn:hover { background:var(--orange-dark); transform:translateY(-2px); }
+.upload-btn-ghost { background:transparent; color:rgba(255,255,255,0.7); padding:12px 28px; border-radius:6px; font-weight:600; cursor:pointer; border:2px solid rgba(255,255,255,0.2); font-family:'Outfit',sans-serif; font-size:0.9rem; transition:all 0.3s; }
+.upload-btn-ghost:hover { border-color:var(--orange); color:var(--orange); }
+#fileInput { display:none; }
+
+/* Lightbox */
+.lightbox { position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; display:none; align-items:center; justify-content:center; padding:20px; }
+.lightbox.open { display:flex; animation:lbIn 0.3s ease; }
+@keyframes lbIn { from{opacity:0;} to{opacity:1;} }
+.lightbox-img { max-width:90vw; max-height:85vh; border-radius:10px; object-fit:contain; box-shadow:0 30px 80px rgba(0,0,0,0.5); }
+.lightbox-close { position:fixed; top:24px; right:28px; font-size:2rem; color:white; cursor:pointer; background:none; border:none; line-height:1; transition:color 0.3s; }
+.lightbox-close:hover { color:var(--orange); }
+.lightbox-caption { position:fixed; bottom:28px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,0.7); font-size:0.9rem; text-align:center; }
+
+/* Developer credit */
+.dev-credit { background:#060b1e; padding:14px 5%; text-align:center; border-top:1px solid rgba(255,255,255,0.05); }
+.dev-credit p { font-size:0.8rem; color:rgba(255,255,255,0.3); }
+.dev-credit span { color:var(--orange); font-weight:600; }
+.dev-credit a { color:var(--blue-light); text-decoration:none; transition:color 0.3s; }
+.dev-credit a:hover { color:var(--orange); }
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr);}
+  .testimonials-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .gallery-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:768px){
+  /* Fix root overflow — this is what causes text to be cut off */
+  html, body { overflow-x:hidden; width:100%; }
+
+  /* Nav */
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+
+  /* Hero — single column, no overflow */
+  .hero-inner{grid-template-columns:1fr; text-align:center; padding:60px 6% 50px;}
+  .hero-visual{display:none;}
+  .hero-badge{font-size:0.65rem; letter-spacing:0.5px; padding:5px 12px;}
+  .hero-title{font-size:clamp(1.8rem,8vw,2.8rem); word-break:break-word;}
+  .hero-sub{max-width:100%; font-size:0.92rem; margin-left:auto; margin-right:auto;}
+  .hero-btns{justify-content:center; flex-direction:column; align-items:center;}
+  .btn-primary, .btn-outline{width:100%; max-width:300px; text-align:center; padding:14px 20px;}
+  .hero-stats{grid-template-columns:repeat(3,1fr); gap:10px;}
+  .stat{padding:14px 8px;}
+  .stat-num{font-size:1.5rem;}
+  .stat-label{font-size:0.65rem;}
+
+  /* Sections */
+  section{padding:60px 6%;}
+  .section-title{font-size:1.7rem;}
+
+  /* Grids → single column */
+  .about-grid,.why-grid,.contact-grid,.pricing-grid{grid-template-columns:1fr;}
+  .about-values,.form-row{grid-template-columns:1fr;}
+  .services-grid,.testimonials-grid{grid-template-columns:1fr;}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column; text-align:center;}
+
+  /* Gallery slider */
+  .slide{height:300px;}
+  .slide-caption{left:20px; right:20px; bottom:20px;}
+  .slide-caption h3{font-size:1.2rem;}
+  .slider-controls{right:20px; bottom:20px;}
+  .slider-btn{width:36px; height:36px; font-size:0.95rem;}
+
+  /* Gallery grid */
+  .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  .gallery-item.span2{grid-column:span 1;}
+  #myWorkGrid{grid-template-columns:repeat(2,1fr) !important;}
+
+  /* Contact form */
+  .contact-form{padding:28px 22px;}
+
+  /* Pricing */
+  .pricing-card{padding:32px 26px;}
+
+  /* Why visual */
+  .why-visual{padding:34px 28px;}
+}
+@media(max-width:420px){
+  .hero-stats{grid-template-columns:1fr 1fr;}
+  .stat:last-child{grid-column:span 2;}
+  .gallery-grid{grid-template-columns:1fr;}
+  .gallery-item.span2{grid-column:span 1;}
+  nav{padding:0 4%;}
+}
+
+/* ANIMATIONS */
+.fade-in { opacity:0; transform:translateY(28px); transition:all 0.65s ease; }
+.fade-in.visible { opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="logo-wrap">
+    <svg width="40" height="40" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="16" fill="#F5A623"/>
+      <circle cx="100" cy="66" r="9" fill="#fff" opacity="0.9"/>
+      <circle cx="124" cy="76" r="9" fill="#fff" opacity="0.9"/>
+      <circle cx="134" cy="100" r="9" fill="#fff" opacity="0.9"/>
+      <circle cx="124" cy="124" r="9" fill="#fff" opacity="0.9"/>
+      <circle cx="100" cy="134" r="9" fill="#fff" opacity="0.9"/>
+      <circle cx="76" cy="124" r="9" fill="#fff" opacity="0.9"/>
+      <circle cx="66" cy="100" r="9" fill="#fff" opacity="0.9"/>
+      <circle cx="76" cy="76" r="9" fill="#fff" opacity="0.9"/>
+      <circle cx="100" cy="40" r="6" fill="#F5A623" opacity="0.6"/>
+      <circle cx="128" cy="48" r="6" fill="#fff" opacity="0.5"/>
+      <circle cx="150" cy="67" r="6" fill="#fff" opacity="0.5"/>
+      <circle cx="158" cy="96" r="6" fill="#F5A623" opacity="0.6"/>
+      <circle cx="150" cy="124" r="6" fill="#fff" opacity="0.5"/>
+      <circle cx="128" cy="145" r="6" fill="#fff" opacity="0.5"/>
+      <circle cx="100" cy="154" r="6" fill="#F5A623" opacity="0.6"/>
+      <circle cx="72" cy="145" r="6" fill="#fff" opacity="0.5"/>
+      <circle cx="50" cy="124" r="6" fill="#fff" opacity="0.5"/>
+      <circle cx="42" cy="96" r="6" fill="#F5A623" opacity="0.6"/>
+      <circle cx="50" cy="67" r="6" fill="#fff" opacity="0.5"/>
+      <circle cx="72" cy="48" r="6" fill="#fff" opacity="0.5"/>
+    </svg>
+    <div class="logo-text">
+      <div class="spotted">SPOTTED <span>POINT</span></div>
+      <div class="media">MEDIA LIMITED</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#why-us">Why Us</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact" class="nav-cta">Work With Us</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content fade-in">
+      <div class="hero-badge">Full Stack Marketing Agency</div>
+      <h1 class="hero-title">We Make the<br/><span>Invisible</span><br/>Visible</h1>
+      <p class="hero-sub">We weave together the invisible systems that keep you secure with the visible creativity that makes you irresistible — so you don't just compete, you command.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Explore Services</a>
+        <a href="#contact" class="btn-outline">Work With Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Services Offered</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Data-Driven</div></div>
+        <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Proactive Support</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-logo-big">
+        <svg width="300" height="300" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="18" fill="#F5A623"/>
+          <circle cx="100" cy="65" r="10" fill="#fff" opacity="0.9"/>
+          <circle cx="125" cy="75" r="10" fill="#fff" opacity="0.9"/>
+          <circle cx="135" cy="100" r="10" fill="#fff" opacity="0.9"/>
+          <circle cx="125" cy="125" r="10" fill="#fff" opacity="0.9"/>
+          <circle cx="100" cy="135" r="10" fill="#fff" opacity="0.9"/>
+          <circle cx="75" cy="125" r="10" fill="#fff" opacity="0.9"/>
+          <circle cx="65" cy="100" r="10" fill="#fff" opacity="0.9"/>
+          <circle cx="75" cy="75" r="10" fill="#fff" opacity="0.9"/>
+          <circle cx="100" cy="38" r="7" fill="#F5A623" opacity="0.6"/>
+          <circle cx="128" cy="46" r="7" fill="#fff" opacity="0.5"/>
+          <circle cx="150" cy="66" r="7" fill="#fff" opacity="0.5"/>
+          <circle cx="158" cy="95" r="7" fill="#F5A623" opacity="0.6"/>
+          <circle cx="150" cy="124" r="7" fill="#fff" opacity="0.5"/>
+          <circle cx="128" cy="146" r="7" fill="#fff" opacity="0.5"/>
+          <circle cx="100" cy="154" r="7" fill="#F5A623" opacity="0.6"/>
+          <circle cx="72" cy="146" r="7" fill="#fff" opacity="0.5"/>
+          <circle cx="50" cy="124" r="7" fill="#fff" opacity="0.5"/>
+          <circle cx="42" cy="95" r="7" fill="#F5A623" opacity="0.6"/>
+          <circle cx="50" cy="66" r="7" fill="#fff" opacity="0.5"/>
+          <circle cx="72" cy="46" r="7" fill="#fff" opacity="0.5"/>
+          <circle cx="100" cy="16" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="135" cy="23" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="163" cy="43" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="178" cy="77" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="178" cy="116" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="163" cy="150" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="135" cy="172" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="100" cy="180" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="65" cy="172" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="37" cy="150" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="22" cy="116" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="22" cy="77" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="37" cy="43" r="5" fill="#fff" opacity="0.22"/>
+          <circle cx="65" cy="23" r="5" fill="#fff" opacity="0.22"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Data Analysis</span><span>Networking</span><span>CCTV Installation</span><span>Web Apps</span><span>Graphic Design</span><span>Digital Marketing</span><span>Video Editing</span><span>Social Media</span><span>Software Development</span><span>Signage</span>
+    <span>Data Analysis</span><span>Networking</span><span>CCTV Installation</span><span>Web Apps</span><span>Graphic Design</span><span>Digital Marketing</span><span>Video Editing</span><span>Social Media</span><span>Software Development</span><span>Signage</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-bg" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual fade-in">
+        <div class="about-card">
+          <svg width="90" height="90" viewBox="0 0 200 200" style="margin:0 auto;display:block;">
+            <circle cx="100" cy="100" r="18" fill="#F5A623"/>
+            <circle cx="100" cy="65" r="10" fill="#fff" opacity="0.8"/>
+            <circle cx="125" cy="75" r="10" fill="#fff" opacity="0.8"/>
+            <circle cx="135" cy="100" r="10" fill="#fff" opacity="0.8"/>
+            <circle cx="125" cy="125" r="10" fill="#fff" opacity="0.8"/>
+            <circle cx="100" cy="135" r="10" fill="#fff" opacity="0.8"/>
+            <circle cx="75" cy="125" r="10" fill="#fff" opacity="0.8"/>
+            <circle cx="65" cy="100" r="10" fill="#fff" opacity="0.8"/>
+            <circle cx="75" cy="75" r="10" fill="#fff" opacity="0.8"/>
+            <circle cx="100" cy="40" r="6" fill="#F5A623" opacity="0.5"/>
+            <circle cx="128" cy="48" r="6" fill="#fff" opacity="0.4"/>
+            <circle cx="150" cy="67" r="6" fill="#fff" opacity="0.4"/>
+            <circle cx="158" cy="95" r="6" fill="#F5A623" opacity="0.5"/>
+            <circle cx="150" cy="124" r="6" fill="#fff" opacity="0.4"/>
+            <circle cx="128" cy="145" r="6" fill="#fff" opacity="0.4"/>
+            <circle cx="100" cy="154" r="6" fill="#F5A623" opacity="0.5"/>
+            <circle cx="72" cy="145" r="6" fill="#fff" opacity="0.4"/>
+            <circle cx="50" cy="124" r="6" fill="#fff" opacity="0.4"/>
+            <circle cx="42" cy="95" r="6" fill="#F5A623" opacity="0.5"/>
+            <circle cx="50" cy="67" r="6" fill="#fff" opacity="0.4"/>
+            <circle cx="72" cy="48" r="6" fill="#fff" opacity="0.4"/>
+          </svg>
+          <div class="about-quote">We Make the <span>Invisible</span> Visible</div>
+          <div class="about-slogan">Grow with Evidence. Succeed with Clarity.</div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="section-tag">About Us</div>
+        <h2 class="section-title">A Different Kind of <span>Partner</span></h2>
+        <div class="divider"></div>
+        <p style="color:var(--gray);font-size:0.93rem;line-height:1.8;margin-bottom:24px;">Spotted Point Media was born from a simple belief: you should not need a team of twenty agencies to run a modern business. We are the partner who installs clarity when the digital world feels overwhelming.</p>
+        <p style="color:var(--gray);font-size:0.93rem;line-height:1.8;margin-bottom:34px;">We are a Full Stack Marketing Agency. Our team speaks both technology and creativity with equal fluency — because your business needs both to thrive. We lead with evidence, not ego. And we stay with you, every step of the way.</p>
+        <div class="about-values">
+          <div class="value-item"><div class="value-icon">🚀</div><div><div class="value-name">Relentless Innovation</div><div class="value-desc">Never stop exploring better ways to serve you.</div></div></div>
+          <div class="value-item"><div class="value-icon">🎯</div><div><div class="value-name">Strategic Simplicity</div><div class="value-desc">Make the complex clear and actionable.</div></div></div>
+          <div class="value-item"><div class="value-icon">💡</div><div><div class="value-name">Bold Creativity</div><div class="value-desc">Work that stops scrolls and starts conversations.</div></div></div>
+          <div class="value-item"><div class="value-icon">🤝</div><div><div class="value-name">Proactive Support</div><div class="value-desc">We anticipate your needs before you ask.</div></div></div>
+          <div class="value-item"><div class="value-icon">📈</div><div><div class="value-name">Long-Term Impact</div><div class="value-desc">Strategies that endure, not quick fixes.</div></div></div>
+          <div class="value-item"><div class="value-icon">🌍</div><div><div class="value-name">Community Impact</div><div class="value-desc">We grow by helping your community grow.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:56px;" class="fade-in">
+      <div class="section-tag">What We Do</div>
+      <h2 class="section-title">Our <span>Services</span></h2>
+      <div class="divider" style="margin:16px auto;"></div>
+      <p class="section-sub" style="margin:0 auto;">We exist to refine your marketing, strengthen your systems, and connect you with the customers ready to find you.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in"><div class="service-num">01</div><div class="service-icon">📊</div><h3 class="service-title">Data Analysis & Dashboard Design</h3><p class="service-desc">Make decisions you can trust. Intuitive dashboards for real-time visibility into product tracking and stock management. Spot trends before they emerge.</p><div class="service-tag">Stop guessing. Start knowing.</div></div>
+      <div class="service-card fade-in"><div class="service-num">02</div><div class="service-icon">🌐</div><h3 class="service-title">Networking Configuration & Management</h3><p class="service-desc">We design, configure, and manage networks that deliver speed, stability, and impenetrable security. Infrastructure that grows with you and never lets you down.</p><div class="service-tag">Reliability, engineered.</div></div>
+      <div class="service-card fade-in"><div class="service-num">03</div><div class="service-icon">📷</div><h3 class="service-title">CCTV Camera Installation</h3><p class="service-desc">Professional CCTV installation watching over your premises 24/7. High-definition clarity, remote access, and deterrence that works while you sleep.</p><div class="service-tag">What matters most deserves protection.</div></div>
+      <div class="service-card fade-in"><div class="service-num">04</div><div class="service-icon">💻</div><h3 class="service-title">WebApp Development</h3><p class="service-desc">Custom web applications that engage your audience while streamlining your operations. Responsive, scalable, secure, and accessible anywhere, anytime.</p><div class="service-tag">Your business, amplified by technology.</div></div>
+      <div class="service-card fade-in"><div class="service-num">05</div><div class="service-icon">📱</div><h3 class="service-title">Software & App Development</h3><p class="service-desc">From concept to deployment and beyond. Mobile apps and enterprise solutions paired with expert network management — built right, managed better.</p><div class="service-tag">Built right. Managed better.</div></div>
+      <div class="service-card fade-in"><div class="service-num">06</div><div class="service-icon">🎨</div><h3 class="service-title">Graphic Design & Animation</h3><p class="service-desc">From logos to full campaigns, from static visuals to animated storytelling — we bring your ideas to life with professionalism and purpose.</p><div class="service-tag">Design that carries meaning.</div></div>
+      <div class="service-card fade-in"><div class="service-num">07</div><div class="service-icon">🪧</div><h3 class="service-title">Signage Solutions</h3><p class="service-desc">Custom outdoor, indoor, event, and safety signage. Billboards, 3D lettering, directional signs, banners, roll-ups — modern design with quality materials.</p><div class="service-tag">Be seen. Be remembered. Be found.</div></div>
+      <div class="service-card fade-in"><div class="service-num">08</div><div class="service-icon">📣</div><h3 class="service-title">Digital Marketing</h3><p class="service-desc">Data-driven strategies that turn scrolls into sales and followers into customers. We've mastered the formula — let us handle your digital presence.</p><div class="service-tag">Turn likes into revenue.</div></div>
+      <div class="service-card fade-in"><div class="service-num">09</div><div class="service-icon">🎬</div><h3 class="service-title">Video Editing & Social Media</h3><p class="service-desc">Raw footage to captivating story. Plus strategic, consistent social media management that builds genuine connection and drives real, measurable results.</p><div class="service-tag">Your story, brilliantly told.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-bg" id="pricing">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:56px;" class="fade-in">
+      <div class="section-tag" style="color:var(--orange);">Our Pricing</div>
+      <h2 class="section-title" style="color:var(--white);">Flexible Plans for <span>Every Business</span></h2>
+      <div class="divider" style="margin:16px auto;"></div>
+      <p class="section-sub" style="color:rgba(255,255,255,0.6);margin:0 auto;">We believe in flexibility. Your business is unique — your pricing should be too.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card fade-in">
+        <div class="pricing-badge">FLEXIBLE</div>
+        <div class="pricing-icon">⚡</div>
+        <div class="pricing-name">Pay-As-You-Go</div>
+        <p class="pricing-desc">Freedom to scale with zero strings attached. Pay only for what you use, when you use it. Perfect for startups and growing businesses.</p>
+        <ul class="pricing-features">
+          <li>No upfront costs</li>
+          <li>Zero lock-in contracts</li>
+          <li>Transparent pricing</li>
+          <li>On-demand creative support</li>
+          <li>Scale at your own pace</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Get Started Today</a>
+      </div>
+      <div class="pricing-card featured fade-in">
+        <div class="pricing-badge">RECOMMENDED</div>
+        <div class="pricing-icon">🏆</div>
+        <div class="pricing-name">Subscription Model</div>
+        <p class="pricing-desc">Priority access, predictable costs, and peace of mind. Uninterrupted premium services with automatic fixed payments and exclusive perks.</p>
+        <ul class="pricing-features">
+          <li>Budget-friendly fixed rates</li>
+          <li>Always-on priority support</li>
+          <li>Exclusive discounts & perks</li>
+          <li>No hidden fees — ever</li>
+          <li>Basic, Pro & Enterprise plans</li>
+        </ul>
+        <a href="#contact" class="pricing-btn">Choose Your Plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why-us">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="fade-in">
+        <div class="section-tag">Why Choose Us</div>
+        <h2 class="section-title">Built Different.<br/>Built for <span>You.</span></h2>
+        <div class="divider"></div>
+        <div class="why-list">
+          <div class="why-item"><div class="why-num">01</div><div><div class="why-title">We Are a Full Stack Agency</div><div class="why-text">Most agencies are great at one thing. We refuse to choose. Our team speaks both technology and creativity with equal fluency — because your business needs both.</div></div></div>
+          <div class="why-item"><div class="why-num">02</div><div><div class="why-title">We Lead with Evidence, Not Ego</div><div class="why-text">Every strategy, system, and design is backed by data you can trust and results you can measure. No guesswork. Just growth.</div></div></div>
+          <div class="why-item"><div class="why-num">03</div><div><div class="why-title">We Stay With You</div><div class="why-text">We don't disappear after the invoice is paid. We build relationships that outlast any single project. Your success is our strategy.</div></div></div>
+          <div class="why-item"><div class="why-num">04</div><div><div class="why-title">Human-Centric Approach</div><div class="why-text">Unlike fragmented agencies, we provide a unified approach where strategic technology and empathic design converge into your single source of growth.</div></div></div>
+        </div>
+      </div>
+      <div class="why-visual fade-in">
+        <div class="mission-block">
+          <div class="mission-label">Our Mission</div>
+          <div class="mission-text">We empower businesses to take command of their digital presence by making the complex simple and the invisible visible. We weave together the systems that keep you secure with the creativity that makes you irresistible.</div>
+        </div>
+        <div class="mission-block">
+          <div class="mission-label">Our Vision</div>
+          <div class="mission-text">To be the first partner businesses turn to when they are ready to stop guessing and start growing — where technology empowers instead of overwhelms and every strategy is backed by evidence.</div>
+        </div>
+        <div class="vision-text">"Grow with Evidence.<br/>Succeed with Clarity."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-bg" id="testimonials">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:56px;" class="fade-in">
+      <div class="section-tag">Client Love</div>
+      <h2 class="section-title">What Our <span>Clients Say</span></h2>
+      <div class="divider" style="margin:16px auto;"></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card fade-in"><div class="stars">★★★★★</div><div class="testi-quote">"</div><p class="testi-text">Spotted Point Media completely transformed our digital presence. They didn't just build us a website — they built us a growth engine. The data dashboards alone have saved us hours every week.</p><div class="testi-author"><div class="testi-avatar">KA</div><div><div class="testi-name">Kwame Asante</div><div class="testi-role">CEO, Asante Retail Group</div></div></div></div>
+      <div class="testi-card fade-in"><div class="stars">★★★★★</div><div class="testi-quote">"</div><p class="testi-text">Their networking setup was flawless. We went from constant connectivity issues to zero downtime. The team's proactive support means I never have to worry about our systems failing.</p><div class="testi-author"><div class="testi-avatar">AB</div><div><div class="testi-name">Ama Boateng</div><div class="testi-role">Operations Manager, TechServe Ghana</div></div></div></div>
+      <div class="testi-card fade-in"><div class="stars">★★★★★</div><div class="testi-quote">"</div><p class="testi-text">The social media strategy they built for us tripled our engagement in two months. Real results backed by real data. Spotted Point Media is the real deal — I recommend them without hesitation.</p><div class="testi-author"><div class="testi-avatar">EO</div><div><div class="testi-name">Emmanuel Owusu</div><div class="testi-role">Founder, Owusu Fashion House</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="fade-in">
+        <div class="section-tag" style="color:var(--orange);">Get In Touch</div>
+        <h2 class="section-title" style="color:var(--white);">Let's Build<br/>Something <span>Great</span></h2>
+        <div class="divider"></div>
+        <p style="color:rgba(255,255,255,0.6);font-size:0.93rem;line-height:1.75;margin-bottom:36px;">Ready to stop guessing and start growing? Tell us about your business and let's create clarity together.</p>
+        <div class="contact-detail"><div class="contact-detail-icon">📞</div><div><div class="contact-detail-label">Call Us</div><div class="contact-detail-value">+233 024 276 0809</div></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">✉️</div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value" style="color:var(--white);">spottedpointmedia&#64;gmail&#46;com</div></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">📍</div><div><div class="contact-detail-label">Location</div><div class="contact-detail-value">Kumasi, Ghana</div></div></div>
+      </div>
+      <div class="contact-form fade-in">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--blue-dark);margin-bottom:26px;">Send Us a Message</h3>
+
+        <!-- ✅ WEB3FORMS — connected to spottedpointmedia@gmail.com -->
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleFormSubmit(event)">
+          <input type="hidden" name="access_key" value="b1bd73f6-1544-4183-b4fb-1c99beddfc27"/>
+          <input type="hidden" name="subject" value="New Enquiry — Spotted Point Media Website"/>
+          <input type="hidden" name="from_name" value="Spotted Point Media Website"/>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name *</label>
+              <input type="text" name="first_name" placeholder="Joe" required/>
+            </div>
+            <div class="form-group">
+              <label>Last Name *</label>
+              <input type="text" name="last_name" placeholder="Mensah" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" name="email" placeholder="joe@example.com" required/>
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" name="phone" placeholder="+233 XX XXX XXXX"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Service Interested In</label>
+            <select name="service">
+              <option value="">Select a service...</option>
+              <option>Data Analysis & Dashboard Design</option>
+              <option>Networking Configuration & Management</option>
+              <option>CCTV Camera Installation</option>
+              <option>WebApp Development</option>
+              <option>Software & App Development</option>
+              <option>Graphic Design & Animation</option>
+              <option>Signage Solutions</option>
+              <option>Digital Marketing</option>
+              <option>Video Editing</option>
+              <option>Social Media Management</option>
+              <option>Multiple Services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell Us About Your Project</label>
+            <textarea name="message" placeholder="Describe your business goals and how we can help..." required></textarea>
+          </div>
+
+          <!-- Success message (hidden by default) -->
+          <div id="formSuccess" style="display:none; background:#d1fae5; border:1px solid #6ee7b7; border-radius:8px; padding:16px; margin-bottom:18px; text-align:center;">
+            <div style="font-size:1.5rem; margin-bottom:6px;">✅</div>
+            <div style="font-weight:700; color:#065f46; font-size:0.95rem;">Message sent successfully!</div>
+            <div style="color:#047857; font-size:0.85rem; margin-top:4px;">We'll get back to you within 24 hours.</div>
+          </div>
+
+          <!-- Error message (hidden by default) -->
+          <div id="formError" style="display:none; background:#fee2e2; border:1px solid #fca5a5; border-radius:8px; padding:16px; margin-bottom:18px; text-align:center;">
+            <div style="font-weight:700; color:#991b1b; font-size:0.9rem;">⚠️ Something went wrong. Please try again or email us directly.</div>
+          </div>
+
+          <button type="submit" class="form-submit" id="submitBtn">Submit Your Request →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-bg" id="gallery" style="padding:90px 5%;">
+  <div class="section-inner">
+    <div class="gallery-header fade-in">
+      <div class="section-tag" style="color:var(--orange);">Our Portfolio</div>
+      <h2 class="section-title">Our <span>Work</span> Gallery</h2>
+      <div class="divider" style="margin:16px auto;"></div>
+      <p class="section-sub">A showcase of our creativity, strategy, and technical excellence — each project a story of transformation.</p>
+    </div>
+
+    <!-- AUTO SLIDER -->
+    <div class="slider-wrapper fade-in">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slide active">
+          <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1400&q=80" alt="Digital Marketing Campaign"/>
+          <div class="slide-overlay"></div>
+          <div class="slide-caption">
+            <div class="slide-cat">Digital Marketing</div>
+            <h3>Brand Awareness Campaign</h3>
+            <p>A full-scale digital marketing campaign that tripled client engagement and drove measurable ROI.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=80" alt="Data Dashboard"/>
+          <div class="slide-overlay"></div>
+          <div class="slide-caption">
+            <div class="slide-cat">Data Analysis</div>
+            <h3>Executive Dashboard Design</h3>
+            <p>Real-time analytics dashboard giving leadership instant visibility into business performance.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=1400&q=80" alt="Web Development"/>
+          <div class="slide-overlay"></div>
+          <div class="slide-caption">
+            <div class="slide-cat">Web Development</div>
+            <h3>Corporate Web Application</h3>
+            <p>A fully custom, responsive web app built to streamline operations and delight users.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=1400&q=80" alt="Graphic Design"/>
+          <div class="slide-overlay"></div>
+          <div class="slide-caption">
+            <div class="slide-cat">Graphic Design</div>
+            <h3>Brand Identity System</h3>
+            <p>Complete visual identity from logo to full brand guidelines — crafted to command attention.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1400&q=80" alt="Networking"/>
+          <div class="slide-overlay"></div>
+          <div class="slide-caption">
+            <div class="slide-cat">Networking</div>
+            <h3>Enterprise Network Setup</h3>
+            <p>Secure, scalable infrastructure configured for a 50-person office with zero-downtime guarantee.</p>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&q=80" alt="Social Media"/>
+          <div class="slide-overlay"></div>
+          <div class="slide-caption">
+            <div class="slide-cat">Social Media</div>
+            <h3>Social Media Management</h3>
+            <p>Consistent content strategy that grew a client's following by 400% in six months.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-btn" onclick="slideMove(-1)">&#8592;</button>
+        <button class="slider-btn" onclick="slideMove(1)">&#8594;</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+
+    <!-- THUMBNAIL STRIP -->
+    <div class="thumb-strip" id="thumbStrip"></div>
+
+    <!-- GRID GALLERY -->
+    <div class="gallery-grid-title fade-in">
+      <h3>Project Snapshots</h3>
+      <p>Click any image to view full size</p>
+    </div>
+    <div class="gallery-grid fade-in" id="galleryGrid">
+      <div class="gallery-item span2" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80" alt="Work 1"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Digital Marketing</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Work 2"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Data Dashboard</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80" alt="Work 3"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Brand Identity</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80" alt="Work 4"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Web Application</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80" alt="Work 5"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Network Setup</span></div>
+      </div>
+      <div class="gallery-item span2" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" alt="Work 6"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Social Media Strategy</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80" alt="Work 7"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">CCTV Installation</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80" alt="Work 8"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Graphic Design</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="Work 9"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Corporate Signage</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80" alt="Work 10"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Video Production</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80" alt="Work 11"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">App Development</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80" alt="Work 12"/>
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Animation & Motion</span></div>
+      </div>
+    </div>
+
+    <!-- MY REAL WORK SECTION — populated by upload, hidden until images added -->
+    <div id="myWorkSection" style="display:none; margin-top:50px;">
+      <div style="text-align:center; margin-bottom:28px;">
+        <div style="display:inline-block; background:rgba(245,166,35,0.15); border:1px solid rgba(245,166,35,0.3); color:var(--orange); padding:5px 16px; border-radius:20px; font-size:0.75rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px;">Our Real Projects</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--white); font-weight:900;">Work We're <span style="color:var(--orange);">Proud Of</span></h3>
+        <div style="width:50px;height:4px;background:var(--orange);border-radius:2px;margin:14px auto 0;"></div>
+      </div>
+      <div id="myWorkGrid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px;"></div>
+    </div>
+
+    <!-- UPLOAD SECTION — PASSWORD PROTECTED -->
+    <!-- Admin lock icon — clicking opens password prompt -->
+    <div style="text-align:center; margin-top:10px;">
+      <button onclick="openAdminPanel()" style="background:none;border:none;cursor:pointer;opacity:0.18;transition:opacity 0.3s;" onmouseenter="this.style.opacity='0.5'" onmouseleave="this.style.opacity='0.18'" title="Admin">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </button>
+    </div>
+
+    <!-- Password Gate (hidden by default) -->
+    <div id="adminGate" style="display:none; margin-top:20px;">
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:36px;text-align:center;max-width:420px;margin:0 auto;">
+        <div style="font-size:2rem;margin-bottom:12px;">🔐</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);font-weight:700;margin-bottom:6px;">Admin Access</div>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.82rem;margin-bottom:20px;">Enter your password to manage the gallery</p>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+          <input type="password" id="adminPassword" placeholder="Enter password…"
+            style="padding:11px 16px;border-radius:7px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-family:'Outfit',sans-serif;font-size:0.9rem;outline:none;width:220px;"
+            onkeydown="if(event.key==='Enter') checkAdminPassword()"
+            onfocus="this.style.borderColor='#F5A623'"
+            onblur="this.style.borderColor='rgba(255,255,255,0.15)'"/>
+          <button onclick="checkAdminPassword()"
+            style="background:var(--orange);color:var(--black);border:none;padding:11px 22px;border-radius:7px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.9rem;transition:background 0.3s;"
+            onmouseenter="this.style.background='#d4891a'" onmouseleave="this.style.background='#F5A623'">Unlock</button>
+        </div>
+        <p id="adminError" style="color:#f87171;font-size:0.78rem;margin-top:12px;min-height:18px;"></p>
+        <button onclick="closeAdminPanel()" style="background:none;border:none;color:rgba(255,255,255,0.3);font-size:0.78rem;cursor:pointer;margin-top:10px;font-family:'Outfit',sans-serif;">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Actual Upload Panel (hidden until correct password) -->
+    <div id="uploadZone" style="display:none; margin-top:20px;">
+      <div style="background:rgba(255,255,255,0.04);border:2px dashed rgba(255,255,255,0.15);border-radius:14px;padding:40px;text-align:center;transition:all 0.3s;"
+        onmouseenter="this.style.borderColor='#F5A623';this.style.background='rgba(245,166,35,0.05)'"
+        onmouseleave="this.style.borderColor='rgba(255,255,255,0.15)';this.style.background='rgba(255,255,255,0.04)'">
+        <div style="font-size:2.8rem;margin-bottom:14px;">🖼️</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--white);font-weight:700;margin-bottom:8px;">Upload Your Work</div>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.86rem;margin-bottom:22px;">Upload 10–14 images of your real projects to replace placeholders.<br/>Supports JPG, PNG, WebP — up to 10MB each.</p>
+        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+          <button onclick="document.getElementById('fileInput').click()"
+            style="background:var(--orange);color:var(--black);padding:12px 28px;border-radius:6px;font-weight:700;cursor:pointer;border:none;font-family:'Outfit',sans-serif;font-size:0.9rem;transition:all 0.3s;"
+            onmouseenter="this.style.background='#d4891a';this.style.transform='translateY(-2px)'"
+            onmouseleave="this.style.background='#F5A623';this.style.transform='translateY(0)'">📁 Choose Images</button>
+          <button onclick="clearGallery()"
+            style="background:transparent;color:rgba(255,255,255,0.7);padding:12px 28px;border-radius:6px;font-weight:600;cursor:pointer;border:2px solid rgba(255,255,255,0.2);font-family:'Outfit',sans-serif;font-size:0.9rem;transition:all 0.3s;"
+            onmouseenter="this.style.borderColor='#F5A623';this.style.color='#F5A623'"
+            onmouseleave="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='rgba(255,255,255,0.7)'">🗑 Reset Gallery</button>
+          <button onclick="lockAdmin()"
+            style="background:transparent;color:rgba(255,255,255,0.35);padding:12px 20px;border-radius:6px;font-weight:600;cursor:pointer;border:2px solid rgba(255,255,255,0.1);font-family:'Outfit',sans-serif;font-size:0.85rem;transition:all 0.3s;"
+            title="Lock admin panel">🔒 Lock</button>
+        </div>
+        <input type="file" id="fileInput" multiple accept="image/*" onchange="handleUpload(event)"/>
+        <p id="uploadStatus" style="margin-top:16px;font-size:0.82rem;color:var(--orange);min-height:20px;"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt=""/>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <svg width="34" height="34" viewBox="0 0 200 200"><circle cx="100" cy="100" r="16" fill="#F5A623"/><circle cx="100" cy="66" r="9" fill="#2B3A9F"/><circle cx="124" cy="76" r="9" fill="#2B3A9F"/><circle cx="134" cy="100" r="9" fill="#2B3A9F"/><circle cx="124" cy="124" r="9" fill="#2B3A9F"/><circle cx="100" cy="134" r="9" fill="#2B3A9F"/><circle cx="76" cy="124" r="9" fill="#2B3A9F"/><circle cx="66" cy="100" r="9" fill="#2B3A9F"/><circle cx="76" cy="76" r="9" fill="#2B3A9F"/></svg>
+          <div style="line-height:1.1;"><div style="font-weight:700;font-size:0.92rem;color:white;">SPOTTED <span style="color:#F5A623;">POINT</span></div><div style="font-size:0.6rem;letter-spacing:2px;color:rgba(255,255,255,0.4);">MEDIA LIMITED</div></div>
+        </div>
+        <p class="footer-tagline">We make the invisible visible. Weaving technology and creativity so you don't just compete — you command.</p>
+        <div class="social-links">
+          <a href=" https://www.facebook.com/profile.php" class="social-link">fb</a>
+          <a href="https://www.instagram.com/spottedpointgh/" class="social-link">In</a>
+          <a href="https://www.linkedin.com/company/spotted-point-media/" class="social-link">L</a>
+          <a href="https://www.tiktok.com/@www.shopalotghana" class="social-link">tiktok</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#why-us">Our Approach</a></li><li><a href="#testimonials">Client Stories</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="#services">Data Analysis</a></li><li><a href="#services">Web Development</a></li><li><a href="#services">Digital Marketing</a></li><li><a href="#services">Graphic Design</a></li><li><a href="#services">CCTV & Networking</a></li></ul></div>
+      <div class="footer-col"><h4>Pricing</h4><ul><li><a href="#pricing">Pay-As-You-Go</a></li><li><a href="#pricing">Subscription Basic</a></li><li><a href="#pricing">Subscription Pro</a></li><li><a href="#pricing">Enterprise</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 <span>Spotted Point Media Limited</span>. All rights reserved.</div>
+      <div class="footer-copy">Grow with Evidence. Succeed with Clarity.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- DEVELOPER CREDIT -->
+<div class="dev-credit">
+  <p>Developed by <span>Prof JNK Mensah</span> &mdash; <a href="#home">Spotted Point Media Limited</a> &nbsp;|&nbsp; Crafted with precision &amp; purpose 🎯</p>
+</div>
+
+<a href="#home" class="scroll-top">↑</a>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  if(links.style.display === 'flex') {
+    links.style.display = 'none';
+  } else {
+    links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:#1e2a75;padding:20px 5%;gap:18px;z-index:999;';
+  }
+}
+
+/* ===== CONTACT FORM — FORMSPREE ===== */
+const contactForm = document.getElementById('contactForm');
+if(contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const success = document.getElementById('formSuccess');
+    const error = document.getElementById('formError');
+
+    // Loading state
+    btn.textContent = 'Sending...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+    success.style.display = 'none';
+    error.style.display = 'none';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if(response.ok) {
+        // Success
+        success.style.display = 'block';
+        contactForm.reset();
+        btn.textContent = '✓ Message Sent!';
+        btn.style.background = '#22c55e';
+        btn.style.opacity = '1';
+        setTimeout(() => {
+          btn.textContent = 'Submit Your Request →';
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch(err) {
+      error.style.display = 'block';
+      btn.textContent = 'Submit Your Request →';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+    }
+  });
+}
+
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.boxShadow = window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,0.45)' : '0 2px 24px rgba(0,0,0,0.25)';
+});
+
+/* ===== GALLERY SLIDER ===== */
+let current = 0, autoTimer, isAnimating = false;
+
+function getSlides() { return document.querySelectorAll('.slide'); }
+function getDots()   { return document.querySelectorAll('.slider-dot'); }
+function getThumbs() { return document.querySelectorAll('.thumb'); }
+
+function buildSliderUI() {
+  const slides = getSlides();
+  const dotsWrap = document.getElementById('sliderDots');
+  const thumbStrip = document.getElementById('thumbStrip');
+  if(!dotsWrap || !thumbStrip) return;
+  dotsWrap.innerHTML = '';
+  thumbStrip.innerHTML = '';
+  slides.forEach((slide, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slider-dot' + (i===0?' active':'');
+    dot.onclick = () => goToSlide(i);
+    dotsWrap.appendChild(dot);
+    const thumb = document.createElement('div');
+    thumb.className = 'thumb' + (i===0?' active':'');
+    thumb.onclick = () => goToSlide(i);
+    const img = slide.querySelector('img');
+    if(img) thumb.innerHTML = `<img src="${img.src}" alt="thumb ${i+1}"/>`;
+    thumbStrip.appendChild(thumb);
+  });
+}
+
+function goToSlide(n) {
+  const slides = getSlides();
+  if(!slides.length || isAnimating || n === current) return;
+  isAnimating = true;
+  slides[current].classList.remove('active');
+  const dots = getDots(), thumbs = getThumbs();
+  if(dots[current]) dots[current].classList.remove('active');
+  if(thumbs[current]) thumbs[current].classList.remove('active');
+  current = (n + slides.length) % slides.length;
+  const track = document.getElementById('sliderTrack');
+  if(track) track.style.transform = `translateX(-${current * 100}%)`;
+  slides[current].classList.add('active');
+  if(dots[current]) dots[current].classList.add('active');
+  if(thumbs[current]) {
+    thumbs[current].classList.add('active');
+    // Scroll only within the thumb strip — never scroll the whole page
+    const strip = document.getElementById('thumbStrip');
+    if(strip) {
+      const th = thumbs[current];
+      const tl = th.offsetLeft, tr = tl + th.offsetWidth;
+      if(tl < strip.scrollLeft) strip.scrollLeft = tl - 10;
+      else if(tr > strip.scrollLeft + strip.clientWidth) strip.scrollLeft = tr - strip.clientWidth + 10;
+    }
+  }
+  setTimeout(() => isAnimating = false, 850);
+  resetAuto();
+}
+
+function slideMove(dir) { goToSlide(current + getSlides().length + dir); }
+
+function resetAuto() {
+  clearInterval(autoTimer);
+  autoTimer = setInterval(() => goToSlide(current + 1), 4500);
+}
+
+buildSliderUI();
+resetAuto();
+
+// Pause auto-slider when gallery is not visible — prevents any scroll interference
+const gallerySection = document.getElementById('gallery');
+if(gallerySection) {
+  const visibilityObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) resetAuto();
+      else clearInterval(autoTimer);
+    });
+  }, { threshold: 0.1 });
+  visibilityObserver.observe(gallerySection);
+}
+
+document.addEventListener('keydown', e => {
+  // Only use arrow keys for slider when gallery section is in viewport
+  const gallery = document.getElementById('gallery');
+  if(gallery) {
+    const rect = gallery.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    if(inView && e.key === 'ArrowLeft') { e.preventDefault(); slideMove(-1); }
+    if(inView && e.key === 'ArrowRight') { e.preventDefault(); slideMove(1); }
+  }
+  if(e.key === 'Escape') closeLightbox();
+});
+
+const track = document.getElementById('sliderTrack');
+if(track) {
+  let touchX = 0;
+  track.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive:true});
+  track.addEventListener('touchend', e => {
+    const diff = touchX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 50) slideMove(diff > 0 ? 1 : -1);
+  }, {passive:true});
+}
+
+/* ===== LIGHTBOX ===== */
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  const label = el.querySelector('.gallery-item-label');
+  document.getElementById('lightboxImg').src = img.src;
+  document.getElementById('lightboxCaption').textContent = label ? label.textContent : '';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if(e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ===== IMAGE UPLOAD — PERSISTENT WITH LOCALSTORAGE ===== */
+let originalSliderHTML = null;
+const STORAGE_KEY = 'spm_gallery_images';
+
+// Load saved images from localStorage on page load
+function loadSavedImages() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if(!saved) return;
+    const images = JSON.parse(saved); // [{dataUrl, name}, ...]
+    if(!images.length) return;
+    renderMyWork(images);
+    appendSlidesToSlider(images.slice(0, 4));
+  } catch(e) { console.log('No saved images'); }
+}
+
+function saveImagesToStorage(newImages) {
+  try {
+    const existing = getSavedImages();
+    const all = [...existing, ...newImages];
+    // Keep max 14
+    const limited = all.slice(0, 14);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(limited));
+    return limited;
+  } catch(e) {
+    alert('Storage full. Please remove some images first.');
+    return getSavedImages();
+  }
+}
+
+function getSavedImages() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  } catch(e) { return []; }
+}
+
+function renderMyWork(images) {
+  if(!images.length) return;
+  const myWorkSection = document.getElementById('myWorkSection');
+  const myWorkGrid = document.getElementById('myWorkGrid');
+  myWorkGrid.innerHTML = '';
+
+  images.forEach((img, i) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item' + (i % 5 === 0 ? ' span2' : '');
+    item.style.cssText = 'border-radius:10px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;';
+    item.dataset.index = i;
+    item.innerHTML = `
+      <img src="${img.dataUrl}" alt="${img.name}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;"/>
+      <div class="gallery-item-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(30,42,117,0.85) 0%,transparent 60%);opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;justify-content:space-between;padding:12px;">
+        <span class="gallery-item-label" style="font-size:0.78rem;font-weight:600;color:white;">${img.name}</span>
+        <button onclick="deleteImage(event,${i})" style="background:rgba(239,68,68,0.85);border:none;color:white;border-radius:5px;padding:4px 8px;font-size:0.72rem;cursor:pointer;font-family:'Outfit',sans-serif;font-weight:700;">✕ Remove</button>
+      </div>`;
+    item.addEventListener('click', function(e){ if(!e.target.closest('button')) openLightbox(this); });
+    item.addEventListener('mouseenter', () => { item.querySelector('img').style.transform='scale(1.08)'; item.querySelector('.gallery-item-overlay').style.opacity='1'; });
+    item.addEventListener('mouseleave', () => { item.querySelector('img').style.transform='scale(1)'; item.querySelector('.gallery-item-overlay').style.opacity='0'; });
+    myWorkGrid.appendChild(item);
+  });
+
+  myWorkSection.style.display = 'block';
+  myWorkSection.style.opacity = '1';
+  myWorkSection.style.transform = 'translateY(0)';
+}
+
+function appendSlidesToSlider(images) {
+  const sliderTrack = document.getElementById('sliderTrack');
+  if(!originalSliderHTML) originalSliderHTML = sliderTrack.innerHTML;
+  // Remove any previously added custom slides (keep only originals)
+  sliderTrack.innerHTML = originalSliderHTML;
+
+  images.forEach(img => {
+    const slide = document.createElement('div');
+    slide.className = 'slide';
+    slide.innerHTML = `<img src="${img.dataUrl}" alt="${img.name}"/><div class="slide-overlay"></div>
+      <div class="slide-caption"><div class="slide-cat">Our Real Work</div><h3>${img.name}</h3>
+      <p>Spotted Point Media — bringing your vision to life.</p></div>`;
+    sliderTrack.appendChild(slide);
+  });
+  buildSliderUI();
+  resetAuto();
+}
+
+function deleteImage(e, index) {
+  e.stopPropagation();
+  if(!confirm('Remove this image from your gallery?')) return;
+  const images = getSavedImages();
+  images.splice(index, 1);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(images));
+  renderMyWork(images);
+  appendSlidesToSlider(images.slice(0, 4));
+  if(!images.length) document.getElementById('myWorkSection').style.display = 'none';
+  document.getElementById('uploadStatus').textContent = 'Image removed ✓';
+}
+
+function handleUpload(event) {
+  const files = Array.from(event.target.files);
+  if(!files.length) return;
+  const status = document.getElementById('uploadStatus');
+  const existing = getSavedImages();
+  const slots = 14 - existing.length;
+
+  if(slots <= 0) {
+    status.textContent = '⚠️ Gallery full (14 max). Remove some images first.';
+    return;
+  }
+
+  status.textContent = 'Loading images…';
+  const limited = files.slice(0, slots);
+  const readers = [];
+
+  limited.forEach(file => {
+    readers.push(new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = e => resolve({
+        dataUrl: e.target.result,
+        name: file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g,' ')
+      });
+      reader.readAsDataURL(file);
+    }));
+  });
+
+  Promise.all(readers).then(newImages => {
+    const all = saveImagesToStorage(newImages);
+    renderMyWork(all);
+    appendSlidesToSlider(all.slice(0, 4));
+
+    const msg = files.length > slots ? ` (${slots} of ${files.length} added — gallery was ${14-slots}/14 full)` : '';
+    status.textContent = `✅ ${newImages.length} image(s) saved permanently${msg}. They will stay after refresh!`;
+    // Reset file input so same files can be re-selected if needed
+    event.target.value = '';
+  });
+}
+
+function clearGallery() {
+  if(!confirm('Remove ALL your uploaded images permanently?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.getElementById('myWorkSection').style.display = 'none';
+  document.getElementById('myWorkGrid').innerHTML = '';
+  document.getElementById('uploadStatus').textContent = 'Gallery cleared ✓';
+  // Restore original slider
+  const sliderTrack = document.getElementById('sliderTrack');
+  if(originalSliderHTML) sliderTrack.innerHTML = originalSliderHTML;
+  buildSliderUI();
+  resetAuto();
+}
+
+// Load saved images immediately when page opens
+window.addEventListener('DOMContentLoaded', () => {
+  originalSliderHTML = document.getElementById('sliderTrack').innerHTML;
+  loadSavedImages();
+});
+
+/* ===== ADMIN PASSWORD PANEL ===== */
+// 🔑 SET YOUR PASSWORD HERE — change "SPM@2025" to anything you want
+const ADMIN_PASSWORD = 'SPM@2025';
+
+function openAdminPanel() {
+  document.getElementById('adminGate').style.display = 'block';
+  document.getElementById('adminPassword').value = '';
+  document.getElementById('adminError').textContent = '';
+  setTimeout(() => document.getElementById('adminPassword').focus(), 100);
+}
+
+function closeAdminPanel() {
+  document.getElementById('adminGate').style.display = 'none';
+  document.getElementById('adminError').textContent = '';
+}
+
+function checkAdminPassword() {
+  const input = document.getElementById('adminPassword').value;
+  const errEl = document.getElementById('adminError');
+  if(input === ADMIN_PASSWORD) {
+    document.getElementById('adminGate').style.display = 'none';
+    document.getElementById('uploadZone').style.display = 'block';
+    document.getElementById('uploadZone').scrollIntoView({ behavior:'smooth', block:'nearest' });
+    errEl.textContent = '';
+  } else {
+    errEl.textContent = '❌ Incorrect password. Please try again.';
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminPassword').focus();
+    // Shake animation
+    const input = document.getElementById('adminPassword');
+    input.style.borderColor = '#f87171';
+    setTimeout(() => input.style.borderColor = 'rgba(255,255,255,0.15)', 1500);
+  }
+}
+
+function lockAdmin() {
+  document.getElementById('uploadZone').style.display = 'none';
+  document.getElementById('adminGate').style.display = 'none';
+}
+</script>
+</body>
+</html>
