@@ -62,8 +62,11 @@ nav {
 .stat-num { font-family:'Playfair Display',serif; font-size:2rem; color:var(--orange); font-weight:700; }
 .stat-label { font-size:0.76rem; color:rgba(255,255,255,0.55); margin-top:4px; }
 .hero-visual { display:flex; align-items:center; justify-content:center; }
-.hero-logo-big { animation:float 4s ease-in-out infinite; }
-@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-18px);} }
+.hero-logo-big { animation:spin 12s linear infinite; transform-origin:center center; }
+@keyframes spin { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+/* Orange center dot pulses while logo spins */
+.hero-logo-big circle:first-child { animation:pulse-dot 2s ease-in-out infinite; transform-origin:100px 100px; }
+@keyframes pulse-dot { 0%,100%{r:18;opacity:1;} 50%{r:22;opacity:0.85;} }
 
 /* TICKER */
 .ticker { background:var(--orange); padding:14px 0; overflow:hidden; }
@@ -179,8 +182,8 @@ footer { background:#0e1535; padding:60px 5% 28px; }
 .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:50px; margin-bottom:50px; }
 .footer-tagline { font-size:0.86rem; color:rgba(255,255,255,0.45); line-height:1.6; max-width:280px; margin:14px 0 18px; }
 .social-links { display:flex; gap:10px; }
-.social-link { width:34px; height:34px; background:rgba(255,255,255,0.08); border-radius:7px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.78rem; font-weight:700; transition:all 0.3s; }
-.social-link:hover { background:var(--orange); color:var(--black); }
+.social-link { width:38px; height:38px; background:rgba(255,255,255,0.08); border-radius:8px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.65); text-decoration:none; transition:all 0.3s; }
+.social-link:hover { background:var(--orange); color:var(--black); transform:translateY(-3px); }
 .footer-col h4 { color:var(--white); font-weight:700; font-size:0.88rem; margin-bottom:16px; }
 .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
 .footer-col ul li a { color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.83rem; transition:color 0.3s; }
@@ -291,7 +294,8 @@ footer { background:#0e1535; padding:60px 5% 28px; }
 
   /* Hero — single column, no overflow */
   .hero-inner{grid-template-columns:1fr; text-align:center; padding:60px 6% 50px;}
-  .hero-visual{display:none;}
+  .hero-visual{display:flex; justify-content:center; margin-top:10px;}
+  .hero-visual svg{width:180px; height:180px;}
   .hero-badge{font-size:0.65rem; letter-spacing:0.5px; padding:5px 12px;}
   .hero-title{font-size:clamp(1.8rem,8vw,2.8rem); word-break:break-word;}
   .hero-sub{max-width:100%; font-size:0.92rem; margin-left:auto; margin-right:auto;}
@@ -639,7 +643,7 @@ footer { background:#0e1535; padding:60px 5% 28px; }
         <p style="color:rgba(255,255,255,0.6);font-size:0.93rem;line-height:1.75;margin-bottom:36px;">Ready to stop guessing and start growing? Tell us about your business and let's create clarity together.</p>
         <div class="contact-detail"><div class="contact-detail-icon">📞</div><div><div class="contact-detail-label">Call Us</div><div class="contact-detail-value">+233 024 276 0809</div></div></div>
         <div class="contact-detail"><div class="contact-detail-icon">✉️</div><div><div class="contact-detail-label">Email</div><div class="contact-detail-value" style="color:var(--white);">spottedpointmedia&#64;gmail&#46;com</div></div></div>
-        <div class="contact-detail"><div class="contact-detail-icon">📍</div><div><div class="contact-detail-label">Location</div><div class="contact-detail-value">Kumasi, Ghana</div></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">📍</div><div><div class="contact-detail-label">Location</div><div class="contact-detail-value">Accra, Ghana</div></div></div>
       </div>
       <div class="contact-form fade-in">
         <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--blue-dark);margin-bottom:26px;">Send Us a Message</h3>
@@ -653,17 +657,17 @@ footer { background:#0e1535; padding:60px 5% 28px; }
           <div class="form-row">
             <div class="form-group">
               <label>First Name *</label>
-              <input type="text" name="first_name" placeholder="Joe" required/>
+              <input type="text" name="first_name" placeholder="John" required/>
             </div>
             <div class="form-group">
               <label>Last Name *</label>
-              <input type="text" name="last_name" placeholder="Mensah" required/>
+              <input type="text" name="last_name" placeholder="Doe" required/>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label>Email *</label>
-              <input type="email" name="email" placeholder="joe@example.com" required/>
+              <input type="email" name="email" placeholder="john@example.com" required/>
             </div>
             <div class="form-group">
               <label>Phone</label>
@@ -930,10 +934,22 @@ footer { background:#0e1535; padding:60px 5% 28px; }
         </div>
         <p class="footer-tagline">We make the invisible visible. Weaving technology and creativity so you don't just compete — you command.</p>
         <div class="social-links">
-          <a href=" https://www.facebook.com/profile.php" class="social-link">fb</a>
-          <a href="https://www.instagram.com/spottedpointgh/" class="social-link">In</a>
-          <a href="https://www.linkedin.com/company/spotted-point-media/" class="social-link">L</a>
-          <a href="https://www.tiktok.com/@www.shopalotghana" class="social-link">tiktok</a>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/profile.php" target="_blank" rel="noopener" class="social-link" title="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/spottedpointgh/" target="_blank" rel="noopener" class="social-link" title="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/company/spotted-point-media/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@www.shopalotghana" target="_blank" rel="noopener" class="social-link" title="TikTok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </a>
         </div>
       </div>
       <div class="footer-col"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#why-us">Our Approach</a></li><li><a href="#testimonials">Client Stories</a></li><li><a href="#contact">Contact</a></li></ul></div>
