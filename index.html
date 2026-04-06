@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Spotted Point Media Limited | Grow with Evidence. Succeed with Clarity.</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<!-- Meta Pixel Code -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','905485014980395');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=905485014980395&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
 <style>
 :root {
   --blue: #2B3A9F;
@@ -45,8 +49,10 @@ nav {
 
 /* HERO */
 .hero { min-height:100vh; background:var(--blue-dark); display:flex; align-items:center; position:relative; overflow:hidden; padding-top:72px; }
-.hero-bg-dots { position:absolute; top:0; left:0; right:0; bottom:0; opacity:0.05; background-image:radial-gradient(circle, #fff 1.5px, transparent 1.5px); background-size:30px 30px; }
-.hero-glow { position:absolute; top:-100px; right:-100px; width:600px; height:600px; background:radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%); border-radius:50%; }
+.hero-video-bg { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.18; pointer-events:none; }
+.hero-video-overlay { position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(135deg, rgba(14,21,53,0.35) 0%, rgba(14,21,53,0.45) 100%); z-index:1; }
+.hero-bg-dots { position:absolute; top:0; left:0; right:0; bottom:0; opacity:0.04; background-image:radial-gradient(circle, #fff 1.5px, transparent 1.5px); background-size:30px 30px; z-index:1; }
+.hero-glow { position:absolute; top:-100px; right:-100px; width:600px; height:600px; background:radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%); border-radius:50%; z-index:1; }
 .hero-inner { position:relative; z-index:2; width:100%; max-width:1200px; margin:0 auto; padding:80px 5%; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
 .hero-badge { display:inline-block; background:rgba(245,166,35,0.15); border:1px solid rgba(245,166,35,0.35); color:var(--orange); padding:6px 14px; border-radius:20px; font-size:0.72rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:20px; white-space:nowrap; max-width:100%; overflow:hidden; text-overflow:ellipsis; }
 .hero-title { font-family:'Playfair Display',serif; font-size:clamp(1.9rem,5vw,3.6rem); color:var(--white); line-height:1.15; font-weight:900; margin-bottom:20px; word-break:break-word; }
@@ -315,6 +321,9 @@ footer { background:#0e1535; padding:60px 5% 28px; }
   .about-values,.form-row{grid-template-columns:1fr;}
   .services-grid,.testimonials-grid{grid-template-columns:1fr;}
 
+  /* Mission/Vision and Why Us cards responsive */
+  [style*="grid-template-columns:repeat(2,1fr)"]{grid-template-columns:1fr !important;}
+
   /* Footer */
   .footer-grid{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column; text-align:center;}
@@ -351,6 +360,12 @@ footer { background:#0e1535; padding:60px 5% 28px; }
 /* ANIMATIONS */
 .fade-in { opacity:0; transform:translateY(28px); transition:all 0.65s ease; }
 .fade-in.visible { opacity:1; transform:translateY(0); }
+
+/* Hero animated background fallback keyframes */
+@keyframes bgShift { from{background-position:0% 50%;} to{background-position:100% 50%;} }
+@keyframes floatA { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-30px) scale(1.05);} }
+@keyframes floatB { 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(25px) scale(0.95);} }
+@keyframes gridDrift { from{background-position:0 0;} to{background-position:60px 60px;} }
 </style>
 </head>
 <body>
@@ -358,7 +373,8 @@ footer { background:#0e1535; padding:60px 5% 28px; }
 <!-- NAV -->
 <nav>
   <a href="#home" class="logo-wrap">
-    <svg width="40" height="40" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <img src="https://spotted-point-media.vercel.app/favicon.ico" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" style="width:40px;height:40px;object-fit:contain;" alt="Spotted Point Logo"/>
+    <svg width="40" height="40" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="display:none;">
       <circle cx="100" cy="100" r="16" fill="#F5A623"/>
       <circle cx="100" cy="66" r="9" fill="#fff" opacity="0.9"/>
       <circle cx="124" cy="76" r="9" fill="#fff" opacity="0.9"/>
@@ -368,18 +384,6 @@ footer { background:#0e1535; padding:60px 5% 28px; }
       <circle cx="76" cy="124" r="9" fill="#fff" opacity="0.9"/>
       <circle cx="66" cy="100" r="9" fill="#fff" opacity="0.9"/>
       <circle cx="76" cy="76" r="9" fill="#fff" opacity="0.9"/>
-      <circle cx="100" cy="40" r="6" fill="#F5A623" opacity="0.6"/>
-      <circle cx="128" cy="48" r="6" fill="#fff" opacity="0.5"/>
-      <circle cx="150" cy="67" r="6" fill="#fff" opacity="0.5"/>
-      <circle cx="158" cy="96" r="6" fill="#F5A623" opacity="0.6"/>
-      <circle cx="150" cy="124" r="6" fill="#fff" opacity="0.5"/>
-      <circle cx="128" cy="145" r="6" fill="#fff" opacity="0.5"/>
-      <circle cx="100" cy="154" r="6" fill="#F5A623" opacity="0.6"/>
-      <circle cx="72" cy="145" r="6" fill="#fff" opacity="0.5"/>
-      <circle cx="50" cy="124" r="6" fill="#fff" opacity="0.5"/>
-      <circle cx="42" cy="96" r="6" fill="#F5A623" opacity="0.6"/>
-      <circle cx="50" cy="67" r="6" fill="#fff" opacity="0.5"/>
-      <circle cx="72" cy="48" r="6" fill="#fff" opacity="0.5"/>
     </svg>
     <div class="logo-text">
       <div class="spotted">SPOTTED <span>POINT</span></div>
@@ -400,6 +404,39 @@ footer { background:#0e1535; padding:60px 5% 28px; }
 
 <!-- HERO -->
 <section class="hero" id="home">
+  <!-- 3 Silent background videos cycling: graphic design → programming → networking -->
+  <!-- 
+    ========================================================
+    TO USE YOUR OWN VIDEOS (BEST OPTION):
+    1. In your Vercel project, create a folder called: public/videos/
+    2. Add 3 video files named: design.mp4  |  coding.mp4  |  network.mp4
+    3. Replace the src values below with: /videos/design.mp4 etc.
+    ========================================================
+  -->
+  <!-- YOUR CLOUDINARY VIDEOS — loads directly, no blocking -->
+  <video id="heroBgVideo1" autoplay muted loop playsinline
+    style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:2;opacity:0.85;pointer-events:none;transition:opacity 2s ease;">
+    <source src="https://res.cloudinary.com/dgttawbta/video/upload/v1775422282/programming_mdythc.mp4" type="video/mp4"/>
+  </video>
+  <video id="heroBgVideo2" muted loop playsinline
+    style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:2;opacity:0;pointer-events:none;transition:opacity 2s ease;">
+    <source src="https://res.cloudinary.com/dgttawbta/video/upload/v1775422274/WhatsApp_Video_2025-09-14_at_12.31.17_704b6fee_ftjr8c.mp4" type="video/mp4"/>
+  </video>
+  <video id="heroBgVideo3" muted loop playsinline
+    style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:2;opacity:0;pointer-events:none;transition:opacity 2s ease;">
+    <source src="https://res.cloudinary.com/dgttawbta/video/upload/v1775422143/graphic_agtqu1.mp4" type="video/mp4"/>
+  </video>
+  <!-- Animated CSS background — always shows; fades out when video loads -->
+  <div id="heroCssBg" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;overflow:hidden;transition:opacity 2s ease;opacity:0.3;">
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0e1535 0%,#1e2a75 50%,#0e1535 100%);"></div>
+    <div style="position:absolute;top:15%;left:10%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,0.07) 0%,transparent 70%);animation:floatA 8s ease-in-out infinite;"></div>
+    <div style="position:absolute;top:40%;right:5%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(43,58,159,0.2) 0%,transparent 70%);animation:floatB 10s ease-in-out infinite;"></div>
+    <div style="position:absolute;bottom:10%;left:30%;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,0.05) 0%,transparent 70%);animation:floatA 6s ease-in-out infinite reverse;"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:60px 60px;animation:gridDrift 20s linear infinite;"></div>
+  </div>
+  <!-- Video label — shows which category is currently playing -->
+  <div id="videoCycleLabel" style="position:absolute;bottom:30px;left:5%;z-index:3;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.55);letter-spacing:2px;text-transform:uppercase;transition:opacity 0.6s ease;opacity:0;"></div>
+  <div class="hero-video-overlay"></div>
   <div class="hero-bg-dots"></div>
   <div class="hero-glow"></div>
   <div class="hero-inner">
@@ -418,44 +455,63 @@ footer { background:#0e1535; padding:60px 5% 28px; }
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-logo-big">
-        <svg width="300" height="300" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="18" fill="#F5A623"/>
-          <circle cx="100" cy="65" r="10" fill="#fff" opacity="0.9"/>
-          <circle cx="125" cy="75" r="10" fill="#fff" opacity="0.9"/>
-          <circle cx="135" cy="100" r="10" fill="#fff" opacity="0.9"/>
-          <circle cx="125" cy="125" r="10" fill="#fff" opacity="0.9"/>
-          <circle cx="100" cy="135" r="10" fill="#fff" opacity="0.9"/>
-          <circle cx="75" cy="125" r="10" fill="#fff" opacity="0.9"/>
-          <circle cx="65" cy="100" r="10" fill="#fff" opacity="0.9"/>
-          <circle cx="75" cy="75" r="10" fill="#fff" opacity="0.9"/>
-          <circle cx="100" cy="38" r="7" fill="#F5A623" opacity="0.6"/>
-          <circle cx="128" cy="46" r="7" fill="#fff" opacity="0.5"/>
-          <circle cx="150" cy="66" r="7" fill="#fff" opacity="0.5"/>
-          <circle cx="158" cy="95" r="7" fill="#F5A623" opacity="0.6"/>
-          <circle cx="150" cy="124" r="7" fill="#fff" opacity="0.5"/>
-          <circle cx="128" cy="146" r="7" fill="#fff" opacity="0.5"/>
-          <circle cx="100" cy="154" r="7" fill="#F5A623" opacity="0.6"/>
-          <circle cx="72" cy="146" r="7" fill="#fff" opacity="0.5"/>
-          <circle cx="50" cy="124" r="7" fill="#fff" opacity="0.5"/>
-          <circle cx="42" cy="95" r="7" fill="#F5A623" opacity="0.6"/>
-          <circle cx="50" cy="66" r="7" fill="#fff" opacity="0.5"/>
-          <circle cx="72" cy="46" r="7" fill="#fff" opacity="0.5"/>
-          <circle cx="100" cy="16" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="135" cy="23" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="163" cy="43" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="178" cy="77" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="178" cy="116" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="163" cy="150" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="135" cy="172" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="100" cy="180" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="65" cy="172" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="37" cy="150" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="22" cy="116" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="22" cy="77" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="37" cy="43" r="5" fill="#fff" opacity="0.22"/>
-          <circle cx="65" cy="23" r="5" fill="#fff" opacity="0.22"/>
+      <div style="position:relative; display:flex; align-items:center; justify-content:center; width:320px; height:320px;">
+        <!-- Outer dashed orbit ring (static) -->
+        <div style="position:absolute; width:310px; height:310px; border-radius:50%; border:1.5px dashed rgba(255,255,255,0.12);"></div>
+        <!-- Subtle glow pulse behind logo -->
+        <div style="position:absolute; width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%); animation:pulse-dot 3s ease-in-out infinite;"></div>
+        <!-- SPINNING LOGO — mathematically perfect rings, no crowding, buttery smooth -->
+        <svg width="260" height="260" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"
+          style="position:relative;z-index:2;animation:spin 22s linear infinite;will-change:transform;backface-visibility:hidden;transform-style:preserve-3d;">
+          <!-- CENTER — single orange dot -->
+          <circle cx="100" cy="100" r="13" fill="#F5A623"/>
+          <!-- Ring 1 — 8 dots, radius 30, gap 6.6px -->
+          <circle cx="100.0" cy="70.0" r="8.5" fill="#ffffff"/>
+          <circle cx="121.2" cy="78.8" r="8.5" fill="#ffffff"/>
+          <circle cx="130.0" cy="100.0" r="8.5" fill="#ffffff"/>
+          <circle cx="121.2" cy="121.2" r="8.5" fill="#ffffff"/>
+          <circle cx="100.0" cy="130.0" r="8.5" fill="#ffffff"/>
+          <circle cx="78.8"  cy="121.2" r="8.5" fill="#ffffff"/>
+          <circle cx="70.0"  cy="100.0" r="8.5" fill="#ffffff"/>
+          <circle cx="78.8"  cy="78.8"  r="8.5" fill="#ffffff"/>
+          <!-- Ring 2 — 12 dots, radius 55, gap 16.8px -->
+          <circle cx="114.2" cy="46.9"  r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="138.9" cy="61.1"  r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="153.1" cy="85.8"  r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="153.1" cy="114.2" r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="138.9" cy="138.9" r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="114.2" cy="153.1" r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="85.8"  cy="153.1" r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="61.1"  cy="138.9" r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="46.9"  cy="114.2" r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="46.9"  cy="85.8"  r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="61.1"  cy="61.1"  r="6.0" fill="#ffffff" opacity="0.85"/>
+          <circle cx="85.8"  cy="46.9"  r="6.0" fill="#ffffff" opacity="0.85"/>
+          <!-- Ring 3 — 18 dots, radius 78, gap 18.2px -->
+          <circle cx="113.5" cy="23.2"  r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="139.0" cy="32.5"  r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="159.8" cy="49.9"  r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="173.3" cy="73.3"  r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="178.0" cy="100.0" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="173.3" cy="126.7" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="159.8" cy="150.1" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="139.0" cy="167.5" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="113.5" cy="176.8" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="86.5"  cy="176.8" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="61.0"  cy="167.5" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="40.2"  cy="150.1" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="26.7"  cy="126.7" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="22.0"  cy="100.0" r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="26.7"  cy="73.3"  r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="40.2"  cy="49.9"  r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="61.0"  cy="32.5"  r="4.5" fill="#ffffff" opacity="0.5"/>
+          <circle cx="86.5"  cy="23.2"  r="4.5" fill="#ffffff" opacity="0.5"/>
         </svg>
+        <!-- Brand text below logo -->
+        <div style="position:absolute; bottom:-50px; text-align:center; white-space:nowrap;">
+          <div style="font-family:'Outfit',sans-serif; font-weight:700; font-size:1rem; color:#fff; letter-spacing:2px;">SPOTTED <span style="color:#F5A623;">POINT</span></div>
+          <div style="font-size:0.58rem; letter-spacing:4px; color:rgba(255,255,255,0.45); margin-top:2px;">MEDIA LIMITED</div>
+        </div>
       </div>
     </div>
   </div>
@@ -475,28 +531,34 @@ footer { background:#0e1535; padding:60px 5% 28px; }
     <div class="about-grid">
       <div class="about-visual fade-in">
         <div class="about-card">
+          <!-- Logo: ONE orange center dot only, all others white — matches brand exactly -->
           <svg width="90" height="90" viewBox="0 0 200 200" style="margin:0 auto;display:block;">
-            <circle cx="100" cy="100" r="18" fill="#F5A623"/>
-            <circle cx="100" cy="65" r="10" fill="#fff" opacity="0.8"/>
-            <circle cx="125" cy="75" r="10" fill="#fff" opacity="0.8"/>
-            <circle cx="135" cy="100" r="10" fill="#fff" opacity="0.8"/>
-            <circle cx="125" cy="125" r="10" fill="#fff" opacity="0.8"/>
-            <circle cx="100" cy="135" r="10" fill="#fff" opacity="0.8"/>
-            <circle cx="75" cy="125" r="10" fill="#fff" opacity="0.8"/>
-            <circle cx="65" cy="100" r="10" fill="#fff" opacity="0.8"/>
-            <circle cx="75" cy="75" r="10" fill="#fff" opacity="0.8"/>
-            <circle cx="100" cy="40" r="6" fill="#F5A623" opacity="0.5"/>
-            <circle cx="128" cy="48" r="6" fill="#fff" opacity="0.4"/>
-            <circle cx="150" cy="67" r="6" fill="#fff" opacity="0.4"/>
-            <circle cx="158" cy="95" r="6" fill="#F5A623" opacity="0.5"/>
-            <circle cx="150" cy="124" r="6" fill="#fff" opacity="0.4"/>
-            <circle cx="128" cy="145" r="6" fill="#fff" opacity="0.4"/>
-            <circle cx="100" cy="154" r="6" fill="#F5A623" opacity="0.5"/>
-            <circle cx="72" cy="145" r="6" fill="#fff" opacity="0.4"/>
-            <circle cx="50" cy="124" r="6" fill="#fff" opacity="0.4"/>
-            <circle cx="42" cy="95" r="6" fill="#F5A623" opacity="0.5"/>
-            <circle cx="50" cy="67" r="6" fill="#fff" opacity="0.4"/>
-            <circle cx="72" cy="48" r="6" fill="#fff" opacity="0.4"/>
+            <!-- CENTER — single orange dot -->
+            <circle cx="100" cy="100" r="16" fill="#F5A623"/>
+            <!-- Ring 1 — 8 white dots -->
+            <circle cx="100" cy="69" r="9" fill="#ffffff" opacity="0.95"/>
+            <circle cx="122" cy="78" r="9" fill="#ffffff" opacity="0.95"/>
+            <circle cx="131" cy="100" r="9" fill="#ffffff" opacity="0.95"/>
+            <circle cx="122" cy="122" r="9" fill="#ffffff" opacity="0.95"/>
+            <circle cx="100" cy="131" r="9" fill="#ffffff" opacity="0.95"/>
+            <circle cx="78"  cy="122" r="9" fill="#ffffff" opacity="0.95"/>
+            <circle cx="69"  cy="100" r="9" fill="#ffffff" opacity="0.95"/>
+            <circle cx="78"  cy="78"  r="9" fill="#ffffff" opacity="0.95"/>
+            <!-- Ring 2 — 14 white dots -->
+            <circle cx="100" cy="44"  r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="123" cy="50"  r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="142" cy="64"  r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="152" cy="86"  r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="152" cy="114" r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="142" cy="136" r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="123" cy="150" r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="100" cy="156" r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="77"  cy="150" r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="58"  cy="136" r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="48"  cy="114" r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="48"  cy="86"  r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="58"  cy="64"  r="6" fill="#ffffff" opacity="0.7"/>
+            <circle cx="77"  cy="50"  r="6" fill="#ffffff" opacity="0.7"/>
           </svg>
           <div class="about-quote">We Make the <span>Invisible</span> Visible</div>
           <div class="about-slogan">Grow with Evidence. Succeed with Clarity.</div>
@@ -516,6 +578,78 @@ footer { background:#0e1535; padding:60px 5% 28px; }
           <div class="value-item"><div class="value-icon">📈</div><div><div class="value-name">Long-Term Impact</div><div class="value-desc">Strategies that endure, not quick fixes.</div></div></div>
           <div class="value-item"><div class="value-icon">🌍</div><div><div class="value-name">Community Impact</div><div class="value-desc">We grow by helping your community grow.</div></div></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section style="background:var(--blue-dark); padding:90px 5%; position:relative; overflow:hidden;">
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.04;background-image:radial-gradient(circle,#fff 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-80px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(245,166,35,0.1) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+  <div class="section-inner">
+    <!-- Section header -->
+    <div style="text-align:center;margin-bottom:64px;" class="fade-in">
+      <div class="section-tag" style="color:var(--orange);">Who We Are</div>
+      <h2 class="section-title" style="color:var(--white);">Our <span>Mission</span> &amp; <span>Vision</span></h2>
+      <div class="divider" style="margin:16px auto;"></div>
+    </div>
+    <!-- Mission + Vision cards side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:64px;">
+      <div class="fade-in" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:44px 38px;position:relative;overflow:hidden;transition:transform 0.4s,box-shadow 0.4s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 24px 60px rgba(0,0,0,0.35)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,rgba(245,166,35,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;box-shadow:0 8px 24px rgba(245,166,35,0.3);">🎯</div>
+        <div style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:12px;">Our Mission</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--white);font-weight:900;line-height:1.3;margin-bottom:16px;">Making the Complex Simple</h3>
+        <p style="font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.8;">We empower businesses to take command of their digital presence by making the complex simple and the invisible visible. We weave together the systems that keep you secure with the creativity that makes you irresistible.</p>
+        <div style="margin-top:24px;height:3px;width:50px;background:linear-gradient(90deg,var(--orange),transparent);border-radius:2px;"></div>
+      </div>
+      <div class="fade-in" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:44px 38px;position:relative;overflow:hidden;transition:transform 0.4s,box-shadow 0.4s;" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 24px 60px rgba(0,0,0,0.35)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,rgba(43,58,159,0.25) 0%,transparent 70%);pointer-events:none;"></div>
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--blue),var(--blue-light));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;box-shadow:0 8px 24px rgba(43,58,159,0.4);">🔭</div>
+        <div style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:12px;">Our Vision</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--white);font-weight:900;line-height:1.3;margin-bottom:16px;">The First Partner You Turn To</h3>
+        <p style="font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.8;">To be the first partner businesses turn to when they are ready to stop guessing and start growing — where technology empowers instead of overwhelms and every strategy is backed by evidence.</p>
+        <div style="margin-top:24px;height:3px;width:50px;background:linear-gradient(90deg,var(--blue-light),transparent);border-radius:2px;"></div>
+      </div>
+    </div>
+    <!-- Tagline banner -->
+    <div class="fade-in" style="background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:14px;padding:36px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <div>
+        <div style="font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:rgba(0,0,0,0.55);font-weight:700;margin-bottom:6px;">Our Promise</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;color:var(--black);line-height:1.2;">"Grow with Evidence.<br/>Succeed with Clarity."</div>
+      </div>
+      <a href="#contact" class="btn-primary" style="background:var(--blue-dark);color:var(--white);white-space:nowrap;flex-shrink:0;">Start Your Journey →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why-us" style="background:var(--light-bg);padding:90px 5%;">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:60px;" class="fade-in">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">Built Different.<br/>Built for <span>You.</span></h2>
+      <div class="divider" style="margin:16px auto;"></div>
+      <p class="section-sub" style="margin:0 auto;">Most agencies pick a lane. We refused. Here's what makes us different.</p>
+    </div>
+    <!-- 4 reason cards in a 2x2 grid with elegant animation -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:60px;">
+      <div class="fade-in" style="background:var(--white);border-radius:16px;padding:36px 30px;border:1px solid var(--border);display:flex;gap:22px;align-items:flex-start;transition:all 0.4s;box-shadow:0 2px 12px rgba(0,0,0,0.04);" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 50px rgba(43,58,159,0.13)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.04)'">
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--blue),var(--blue-light));border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:var(--white);flex-shrink:0;">01</div>
+        <div><div style="font-weight:700;color:var(--blue-dark);margin-bottom:8px;font-size:1rem;">We Are a Full Stack Agency</div><div style="font-size:0.88rem;color:var(--gray);line-height:1.7;">Most agencies are great at one thing. We refuse to choose. Our team speaks both technology and creativity with equal fluency — because your business needs both.</div></div>
+      </div>
+      <div class="fade-in" style="background:var(--white);border-radius:16px;padding:36px 30px;border:1px solid var(--border);display:flex;gap:22px;align-items:flex-start;transition:all 0.4s;box-shadow:0 2px 12px rgba(0,0,0,0.04);" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 50px rgba(43,58,159,0.13)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.04)'">
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:var(--black);flex-shrink:0;">02</div>
+        <div><div style="font-weight:700;color:var(--blue-dark);margin-bottom:8px;font-size:1rem;">We Lead with Evidence, Not Ego</div><div style="font-size:0.88rem;color:var(--gray);line-height:1.7;">Every strategy, system, and design is backed by data you can trust and results you can measure. No guesswork. Just growth.</div></div>
+      </div>
+      <div class="fade-in" style="background:var(--white);border-radius:16px;padding:36px 30px;border:1px solid var(--border);display:flex;gap:22px;align-items:flex-start;transition:all 0.4s;box-shadow:0 2px 12px rgba(0,0,0,0.04);" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 50px rgba(43,58,159,0.13)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.04)'">
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--blue),var(--blue-light));border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:var(--white);flex-shrink:0;">03</div>
+        <div><div style="font-weight:700;color:var(--blue-dark);margin-bottom:8px;font-size:1rem;">We Stay With You</div><div style="font-size:0.88rem;color:var(--gray);line-height:1.7;">We don't disappear after the invoice is paid. We build relationships that outlast any single project. Your success is our strategy.</div></div>
+      </div>
+      <div class="fade-in" style="background:var(--white);border-radius:16px;padding:36px 30px;border:1px solid var(--border);display:flex;gap:22px;align-items:flex-start;transition:all 0.4s;box-shadow:0 2px 12px rgba(0,0,0,0.04);" onmouseenter="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 50px rgba(43,58,159,0.13)'" onmouseleave="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.04)'">
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;color:var(--black);flex-shrink:0;">04</div>
+        <div><div style="font-weight:700;color:var(--blue-dark);margin-bottom:8px;font-size:1rem;">Human-Centric Approach</div><div style="font-size:0.88rem;color:var(--gray);line-height:1.7;">Unlike fragmented agencies, we provide a unified approach where strategic technology and empathic design converge into your single source of growth.</div></div>
       </div>
     </div>
   </div>
@@ -586,36 +720,7 @@ footer { background:#0e1535; padding:60px 5% 28px; }
   </div>
 </section>
 
-<!-- WHY US -->
-<section id="why-us">
-  <div class="section-inner">
-    <div class="why-grid">
-      <div class="fade-in">
-        <div class="section-tag">Why Choose Us</div>
-        <h2 class="section-title">Built Different.<br/>Built for <span>You.</span></h2>
-        <div class="divider"></div>
-        <div class="why-list">
-          <div class="why-item"><div class="why-num">01</div><div><div class="why-title">We Are a Full Stack Agency</div><div class="why-text">Most agencies are great at one thing. We refuse to choose. Our team speaks both technology and creativity with equal fluency — because your business needs both.</div></div></div>
-          <div class="why-item"><div class="why-num">02</div><div><div class="why-title">We Lead with Evidence, Not Ego</div><div class="why-text">Every strategy, system, and design is backed by data you can trust and results you can measure. No guesswork. Just growth.</div></div></div>
-          <div class="why-item"><div class="why-num">03</div><div><div class="why-title">We Stay With You</div><div class="why-text">We don't disappear after the invoice is paid. We build relationships that outlast any single project. Your success is our strategy.</div></div></div>
-          <div class="why-item"><div class="why-num">04</div><div><div class="why-title">Human-Centric Approach</div><div class="why-text">Unlike fragmented agencies, we provide a unified approach where strategic technology and empathic design converge into your single source of growth.</div></div></div>
-        </div>
-      </div>
-      <div class="why-visual fade-in">
-        <div class="mission-block">
-          <div class="mission-label">Our Mission</div>
-          <div class="mission-text">We empower businesses to take command of their digital presence by making the complex simple and the invisible visible. We weave together the systems that keep you secure with the creativity that makes you irresistible.</div>
-        </div>
-        <div class="mission-block">
-          <div class="mission-label">Our Vision</div>
-          <div class="mission-text">To be the first partner businesses turn to when they are ready to stop guessing and start growing — where technology empowers instead of overwhelms and every strategy is backed by evidence.</div>
-        </div>
-        <div class="vision-text">"Grow with Evidence.<br/>Succeed with Clarity."</div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- WHY US moved above - see after ABOUT -->
 <!-- TESTIMONIALS -->
 <section class="testimonials-bg" id="testimonials">
   <div class="section-inner">
@@ -929,7 +1034,7 @@ footer { background:#0e1535; padding:60px 5% 28px; }
     <div class="footer-grid">
       <div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-          <svg width="34" height="34" viewBox="0 0 200 200"><circle cx="100" cy="100" r="16" fill="#F5A623"/><circle cx="100" cy="66" r="9" fill="#2B3A9F"/><circle cx="124" cy="76" r="9" fill="#2B3A9F"/><circle cx="134" cy="100" r="9" fill="#2B3A9F"/><circle cx="124" cy="124" r="9" fill="#2B3A9F"/><circle cx="100" cy="134" r="9" fill="#2B3A9F"/><circle cx="76" cy="124" r="9" fill="#2B3A9F"/><circle cx="66" cy="100" r="9" fill="#2B3A9F"/><circle cx="76" cy="76" r="9" fill="#2B3A9F"/></svg>
+          <svg width="34" height="34" viewBox="0 0 200 200"><circle cx="100" cy="100" r="16" fill="#F5A623"/><circle cx="100" cy="66" r="9" fill="#fff" opacity="0.9"/><circle cx="124" cy="76" r="9" fill="#fff" opacity="0.9"/><circle cx="134" cy="100" r="9" fill="#fff" opacity="0.9"/><circle cx="124" cy="124" r="9" fill="#fff" opacity="0.9"/><circle cx="100" cy="134" r="9" fill="#fff" opacity="0.9"/><circle cx="76" cy="124" r="9" fill="#fff" opacity="0.9"/><circle cx="66" cy="100" r="9" fill="#fff" opacity="0.9"/><circle cx="76" cy="76" r="9" fill="#fff" opacity="0.9"/></svg>
           <div style="line-height:1.1;"><div style="font-weight:700;font-size:0.92rem;color:white;">SPOTTED <span style="color:#F5A623;">POINT</span></div><div style="font-size:0.6rem;letter-spacing:2px;color:rgba(255,255,255,0.4);">MEDIA LIMITED</div></div>
         </div>
         <p class="footer-tagline">We make the invisible visible. Weaving technology and creativity so you don't just compete — you command.</p>
@@ -1151,41 +1256,116 @@ function closeLightbox(e) {
   document.body.style.overflow = '';
 }
 
-/* ===== IMAGE UPLOAD — PERSISTENT WITH LOCALSTORAGE ===== */
-let originalSliderHTML = null;
-const STORAGE_KEY = 'spm_gallery_images';
+/* ===== GALLERY — JSONBIN + CLOUDINARY (truly global for ALL visitors) ===== */
+// JSONBin stores the image list globally → every visitor sees the same gallery
+// Cloudinary stores the actual image files permanently
+// Bin ID: 69d437b336566621a8860cdb
 
-// Load saved images from localStorage on page load
-function loadSavedImages() {
+let originalSliderHTML = null;
+
+const JSONBIN_BIN_ID  = '69d44593aaba882197cf1543';
+const JSONBIN_API_KEY = '$2a$10$mAGKgl9BmIGzHqTH6NKOX.Zx4zB0DQjMrVMCDVnXe3lbzHEUopDyy';
+const JSONBIN_URL     = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+
+// Your 2 Cloudinary images — pre-loaded so everyone sees them from day 1
+// const INITIAL_IMAGES = [
+//   {
+//     dataUrl: 'https://res.cloudinary.com/dgttawbta/image/upload/v1775422134/IMG-20251002-WA0004_it9xpr.jpg',
+//     name: 'Spotted Point Media Work',
+//     cloudinary: true
+//   },
+//   {
+//     dataUrl: 'https://res.cloudinary.com/dgttawbta/image/upload/v1775422133/IMG-20250512-WA0004_ononh0.jpg',
+//     name: 'Our Project',
+//     cloudinary: true
+//   }
+// ];
+
+async function fetchGlobalImages() {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if(!saved) return;
-    const images = JSON.parse(saved); // [{dataUrl, name}, ...]
-    if(!images.length) return;
-    renderMyWork(images);
-    appendSlidesToSlider(images.slice(0, 4));
-  } catch(e) { console.log('No saved images'); }
+    const res = await fetch(`${JSONBIN_URL}/latest`, {
+      headers: { 'X-Master-Key': JSONBIN_API_KEY }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return data.record?.images || [];
+    }
+  } catch(e) { console.log('JSONBin fetch error:', e); }
+  return [];
 }
 
-function saveImagesToStorage(newImages) {
+async function saveGlobalImages(images) {
   try {
-    const existing = getSavedImages();
-    const all = [...existing, ...newImages];
-    // Keep max 14
-    const limited = all.slice(0, 14);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(limited));
-    return limited;
-  } catch(e) {
-    alert('Storage full. Please remove some images first.');
-    return getSavedImages();
+    await fetch(JSONBIN_URL, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_API_KEY
+      },
+      body: JSON.stringify({ images })
+    });
+    localStorage.setItem('spm_cloudinary_urls', JSON.stringify(images));
+  } catch(e) { console.log('JSONBin save error:', e); }
+}
+
+async function loadSavedImages() {
+  // Try JSONBin first — global shared list
+  let images = await fetchGlobalImages();
+
+  // If bin is empty, seed it with the initial Cloudinary images
+  if (!images.length) {
+    images = INITIAL_IMAGES;
+    await saveGlobalImages(images); // save so all future visitors see them too
   }
+
+  if (images.length) {
+    localStorage.setItem('spm_cloudinary_urls', JSON.stringify(images));
+    renderMyWork(images);
+    appendSlidesToSlider(images.slice(0, 4));
+    return;
+  }
+
+  // Final fallback: localStorage cache
+  try {
+    const stored = localStorage.getItem('spm_cloudinary_urls');
+    if (stored) {
+      const cached = JSON.parse(stored);
+      if (cached?.length) { renderMyWork(cached); appendSlidesToSlider(cached.slice(0, 4)); }
+    }
+  } catch(e) {}
 }
 
 function getSavedImages() {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : [];
+    const s = localStorage.getItem('spm_cloudinary_urls');
+    return s ? JSON.parse(s) : [];
   } catch(e) { return []; }
+}
+
+async function uploadToCloudinary(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', 'spotted_point_media');
+  try {
+    const res = await fetch('https://api.cloudinary.com/v1_1/dgttawbta/image/upload', {
+      method: 'POST', body: formData
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return { 
+        dataUrl: `https://res.cloudinary.com/dgttawbta/image/upload/q_auto,f_auto/${data.public_id}`,
+        name: file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g,' '), 
+        cloudinary: true,
+        publicId: data.public_id
+      };
+    }
+  } catch(e) { console.log('Cloudinary error:', e); }
+  // Fallback: base64
+  return new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onload = e => resolve({ dataUrl: e.target.result, name: file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g,' '), cloudinary: false });
+    reader.readAsDataURL(file);
+  });
 }
 
 function renderMyWork(images) {
@@ -1193,14 +1373,12 @@ function renderMyWork(images) {
   const myWorkSection = document.getElementById('myWorkSection');
   const myWorkGrid = document.getElementById('myWorkGrid');
   myWorkGrid.innerHTML = '';
-
   images.forEach((img, i) => {
     const item = document.createElement('div');
     item.className = 'gallery-item' + (i % 5 === 0 ? ' span2' : '');
     item.style.cssText = 'border-radius:10px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;';
-    item.dataset.index = i;
     item.innerHTML = `
-      <img src="${img.dataUrl}" alt="${img.name}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;"/>
+      <img src="${img.dataUrl}" alt="${img.name}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;" loading="lazy"/>
       <div class="gallery-item-overlay" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(30,42,117,0.85) 0%,transparent 60%);opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;justify-content:space-between;padding:12px;">
         <span class="gallery-item-label" style="font-size:0.78rem;font-weight:600;color:white;">${img.name}</span>
         <button onclick="deleteImage(event,${i})" style="background:rgba(239,68,68,0.85);border:none;color:white;border-radius:5px;padding:4px 8px;font-size:0.72rem;cursor:pointer;font-family:'Outfit',sans-serif;font-weight:700;">✕ Remove</button>
@@ -1210,99 +1388,83 @@ function renderMyWork(images) {
     item.addEventListener('mouseleave', () => { item.querySelector('img').style.transform='scale(1)'; item.querySelector('.gallery-item-overlay').style.opacity='0'; });
     myWorkGrid.appendChild(item);
   });
-
   myWorkSection.style.display = 'block';
-  myWorkSection.style.opacity = '1';
-  myWorkSection.style.transform = 'translateY(0)';
 }
 
 function appendSlidesToSlider(images) {
   const sliderTrack = document.getElementById('sliderTrack');
   if(!originalSliderHTML) originalSliderHTML = sliderTrack.innerHTML;
-  // Remove any previously added custom slides (keep only originals)
   sliderTrack.innerHTML = originalSliderHTML;
-
   images.forEach(img => {
     const slide = document.createElement('div');
     slide.className = 'slide';
     slide.innerHTML = `<img src="${img.dataUrl}" alt="${img.name}"/><div class="slide-overlay"></div>
-      <div class="slide-caption"><div class="slide-cat">Our Real Work</div><h3>${img.name}</h3>
-      <p>Spotted Point Media — bringing your vision to life.</p></div>`;
+      <div class="slide-caption"><div class="slide-cat">Our Real Work</div><h3>${img.name}</h3><p>Spotted Point Media — bringing your vision to life.</p></div>`;
     sliderTrack.appendChild(slide);
   });
-  buildSliderUI();
-  resetAuto();
+  buildSliderUI(); resetAuto();
 }
 
-function deleteImage(e, index) {
+async function deleteImage(e, index) {
   e.stopPropagation();
-  if(!confirm('Remove this image from your gallery?')) return;
+  if(!confirm('Remove this image for ALL visitors?')) return;
   const images = getSavedImages();
   images.splice(index, 1);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(images));
+  await saveGlobalImages(images);
   renderMyWork(images);
   appendSlidesToSlider(images.slice(0, 4));
   if(!images.length) document.getElementById('myWorkSection').style.display = 'none';
-  document.getElementById('uploadStatus').textContent = 'Image removed ✓';
+  document.getElementById('uploadStatus').textContent = 'Image removed for all visitors ✓';
 }
 
-function handleUpload(event) {
+async function handleUpload(event) {
   const files = Array.from(event.target.files);
   if(!files.length) return;
   const status = document.getElementById('uploadStatus');
   const existing = getSavedImages();
   const slots = 14 - existing.length;
+  if(slots <= 0) { status.textContent = '⚠️ Gallery full (14 max). Remove some images first.'; return; }
 
-  if(slots <= 0) {
-    status.textContent = '⚠️ Gallery full (14 max). Remove some images first.';
-    return;
+  const limited = files.slice(0, slots);
+  status.textContent = `⏳ Uploading ${limited.length} image(s) to cloud…`;
+
+  const uploaded = [];
+  for (const file of limited) {
+    const result = await uploadToCloudinary(file);
+    uploaded.push(result);
+    status.textContent = `⏳ ${uploaded.length} of ${limited.length} uploaded…`;
   }
 
-  status.textContent = 'Loading images…';
-  const limited = files.slice(0, slots);
-  const readers = [];
+  const all = [...existing, ...uploaded].slice(0, 14);
+  localStorage.setItem('spm_cloudinary_urls', JSON.stringify(all));
+  renderMyWork(all);
+  appendSlidesToSlider(all.slice(0, 4));
 
-  limited.forEach(file => {
-    readers.push(new Promise(resolve => {
-      const reader = new FileReader();
-      reader.onload = e => resolve({
-        dataUrl: e.target.result,
-        name: file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g,' ')
-      });
-      reader.readAsDataURL(file);
-    }));
-  });
-
-  Promise.all(readers).then(newImages => {
-    const all = saveImagesToStorage(newImages);
-    renderMyWork(all);
-    appendSlidesToSlider(all.slice(0, 4));
-
-    const msg = files.length > slots ? ` (${slots} of ${files.length} added — gallery was ${14-slots}/14 full)` : '';
-    status.textContent = `✅ ${newImages.length} image(s) saved permanently${msg}. They will stay after refresh!`;
-    // Reset file input so same files can be re-selected if needed
-    event.target.value = '';
-  });
+  const cloudCount = uploaded.filter(i => i.cloudinary).length;
+  if(cloudCount > 0) {
+    status.textContent = `✅ ${cloudCount} image(s) live on Cloudinary — now visible to ALL visitors worldwide! 🌍`;
+  } else {
+    status.textContent = `⚠️ Cloudinary upload failed. Check your preset name is exactly: spotted_point_media`;
+  }
+  event.target.value = '';
 }
 
-function clearGallery() {
-  if(!confirm('Remove ALL your uploaded images permanently?')) return;
-  localStorage.removeItem(STORAGE_KEY);
+async function clearGallery() {
+  if(!confirm('Remove ALL images for ALL visitors permanently?')) return;
+  localStorage.removeItem('spm_cloudinary_urls');
   document.getElementById('myWorkSection').style.display = 'none';
   document.getElementById('myWorkGrid').innerHTML = '';
-  document.getElementById('uploadStatus').textContent = 'Gallery cleared ✓';
-  // Restore original slider
+  document.getElementById('uploadStatus').textContent = 'Gallery cleared for all visitors ✓';
   const sliderTrack = document.getElementById('sliderTrack');
   if(originalSliderHTML) sliderTrack.innerHTML = originalSliderHTML;
-  buildSliderUI();
-  resetAuto();
+  buildSliderUI(); resetAuto();
 }
 
-// Load saved images immediately when page opens
 window.addEventListener('DOMContentLoaded', () => {
   originalSliderHTML = document.getElementById('sliderTrack').innerHTML;
   loadSavedImages();
 });
+
 
 /* ===== ADMIN PASSWORD PANEL ===== */
 // 🔑 SET YOUR PASSWORD HERE — change "SPM@2025" to anything you want
@@ -1343,6 +1505,77 @@ function lockAdmin() {
   document.getElementById('uploadZone').style.display = 'none';
   document.getElementById('adminGate').style.display = 'none';
 }
+
+/* ===== HERO VIDEO CYCLING — graphic design → programming → networking ===== */
+(function() {
+  const videoIds = ['heroBgVideo1', 'heroBgVideo2', 'heroBgVideo3'];
+  const labels   = ['💻 Programming', '🎬 Our Work', '🎨 Graphic Design'];
+  let current = 0;
+  let cycleTimer = null;
+
+  function showVideo(index) {
+    videoIds.forEach((id, i) => {
+      const v = document.getElementById(id);
+      if (!v) return;
+      if (i === index) {
+        v.style.zIndex = '2';
+        v.style.opacity = '0.85';
+        v.play().catch(() => {});
+      } else {
+        v.style.opacity = '0';
+        v.style.zIndex = '1';
+      }
+    });
+    current = index;
+    // Show label
+    const label = document.getElementById('videoCycleLabel');
+    if (label) {
+      label.style.opacity = '0';
+      setTimeout(() => {
+        label.textContent = labels[index];
+        label.style.opacity = '1';
+      }, 400);
+    }
+  }
+
+  function nextVideo() {
+    showVideo((current + 1) % videoIds.length);
+  }
+
+  function initVideos() {
+    const videos = videoIds.map(id => document.getElementById(id));
+    const cssBg  = document.getElementById('heroCssBg');
+
+    // Pre-load all videos silently
+    videos.forEach(v => { if(v) v.load(); });
+
+    // Play first video immediately — it's already visible (opacity:0.85)
+    const v1 = videos[0];
+    if (v1) {
+      v1.style.opacity = '0.85';
+      v1.style.zIndex = '2';
+      v1.play().catch(() => {
+        console.log('Autoplay blocked by browser policy.');
+      });
+      v1.addEventListener('playing', () => {
+        if(cssBg) cssBg.style.opacity = '0';
+      }, { once: true });
+    }
+
+    // Show first label
+    const label = document.getElementById('videoCycleLabel');
+    if(label) { label.textContent = labels[0]; label.style.opacity = '1'; }
+
+    // Cycle every 7 seconds
+    cycleTimer = setInterval(nextVideo, 7000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVideos);
+  } else {
+    initVideos();
+  }
+})();
 </script>
 </body>
 </html>
